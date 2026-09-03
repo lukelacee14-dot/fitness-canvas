@@ -2,7 +2,7 @@ var CATALOG = [
   {
     category: 'Training',
     tools: [
-      { id: 'workout-logger', title: 'Workout Logger', description: 'Log sets, reps, and weight like a spreadsheet.', status: 'live' },
+      { id: 'workout-logger', title: 'Workout Logger', description: 'Log workouts across 90+ sports, from strength training to team sports.', status: 'live' },
       { id: 'program-builder', title: 'Program Builder / Digital PT', description: 'Pick a muscle group or goal and get suggested exercises.', status: 'live' },
       { id: 'exercise-library', title: 'Exercise Library & Muscle Guide', description: 'Browse exercises by muscle group with how-to guidance.', status: 'soon' },
       { id: 'rest-timer', title: 'Rest Timer', description: 'Countdown between sets so you know when to go again.', status: 'soon' },
