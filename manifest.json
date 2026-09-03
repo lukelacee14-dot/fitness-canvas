@@ -1,0 +1,8 @@
+{
+  "name": "Fitness Canvas",
+  "short_name": "Fitness Canvas",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f0f0f2",
+  "theme_color": "#f0f0f2"
+}

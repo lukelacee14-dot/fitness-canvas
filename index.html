@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Fitness Canvas</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#f0f0f2">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="css/canvas.css">
+<link rel="stylesheet" href="css/modules.css">
+</head>
+<body>
+<div class="app">
+  <header class="app-header">
+    <h1 class="app-header__title">Fitness Canvas</h1>
+  </header>
+
+  <main id="canvas" class="canvas">
+    <p id="canvas-empty" class="canvas-empty">Tap + to add your first tool.</p>
+  </main>
+
+  <nav id="bottom-bar" class="bottom-bar">
+    <div id="bottom-bar-left" class="bottom-bar__slots bottom-bar__slots--left"></div>
+    <button id="add-btn" class="bottom-bar__add" type="button" aria-label="Add a tool">+</button>
+    <div id="bottom-bar-right" class="bottom-bar__slots bottom-bar__slots--right"></div>
+  </nav>
+</div>
+
+<div id="picker" class="overlay" hidden>
+  <div class="overlay__panel">
+    <div class="overlay__header">
+      <h2>Add a Tool</h2>
+      <button id="picker-close" class="icon-btn" type="button" aria-label="Close">&#10005;</button>
+    </div>
+    <div id="picker-list" class="overlay__body"></div>
+  </div>
+</div>
+
+<div id="more-sheet" class="overlay" hidden>
+  <div class="overlay__panel">
+    <div class="overlay__header">
+      <h2>Active Tools</h2>
+      <button id="more-sheet-close" class="icon-btn" type="button" aria-label="Close">&#10005;</button>
+    </div>
+    <div id="more-sheet-list" class="overlay__body"></div>
+  </div>
+</div>
+
+<script src="js/storage.js"></script>
+<script src="js/catalog.js"></script>
+<script src="js/registry.js"></script>
+<script src="js/canvas.js"></script>
+<script src="js/bottombar.js"></script>
+<script src="js/more-sheet.js"></script>
+<script src="js/picker.js"></script>
+<script src="modules/workout-logger/module.js"></script>
+<script src="modules/program-builder/module.js"></script>
+<script src="modules/meal-tracker/module.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
