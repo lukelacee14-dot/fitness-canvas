@@ -6,7 +6,17 @@
   }
 
   function todayStr() {
-    return new Date().toISOString().slice(0, 10);
+    var d = new Date();
+    var localMs = d.getTime() - d.getTimezoneOffset() * 60000;
+    return new Date(localMs).toISOString().slice(0, 10);
+  }
+
+  function daysBetween(a, b) {
+    function toUTC(s) {
+      var p = s.split('-');
+      return Date.UTC(Number(p[0]), Number(p[1]) - 1, Number(p[2]));
+    }
+    return Math.round((toUTC(b) - toUTC(a)) / 86400000);
   }
 
   function formatDate(dateStr) {
@@ -18,6 +28,22 @@
     var div = document.createElement('div');
     div.textContent = str;
     return div.innerHTML;
+  }
+
+  // ---- Program Builder hand-off ------------------------------------------
+
+  function getTodaysProgramDay() {
+    var pbData = Storage.get('module:program-builder', null);
+    if (!pbData || !pbData.activeProgramId || !pbData.activeProgramStartDate) return null;
+
+    var program = (pbData.savedPrograms || []).filter(function (p) { return p.id === pbData.activeProgramId; })[0];
+    if (!program || !program.days || program.days.length === 0) return null;
+
+    var elapsed = daysBetween(pbData.activeProgramStartDate, todayStr());
+    if (elapsed < 0) elapsed = 0;
+    var dayIndex = elapsed % program.days.length;
+
+    return { program: program, day: program.days[dayIndex], dayIndex: dayIndex };
   }
 
   // ---- Shared field definitions -------------------------------------
@@ -513,7 +539,29 @@
       if (!data.entries['strength-training']) data.entries['strength-training'] = [];
       var entries = data.entries['strength-training'];
 
+      var planned = getTodaysProgramDay();
+      var plannedHtml = '';
+      if (planned) {
+        plannedHtml =
+          '<div class="pb-planned">' +
+            '<div class="pb-planned__header">' +
+              '<span class="pb-planned__label">Today&#8217;s Planned Session</span>' +
+              '<span class="pb-planned__day">' + escapeHtml(planned.day.label) + '</span>' +
+            '</div>' +
+            planned.day.exercises.map(function (ex, i) {
+              return '<div class="pb-planned__row" data-index="' + i + '">' +
+                '<div class="pb-planned__text">' +
+                  '<span class="pb-planned__name">' + escapeHtml(ex.name) + '</span>' +
+                  '<span class="pb-planned__scheme">' + ex.sets + ' × ' + escapeHtml(String(ex.reps)) + ' · rest ' + escapeHtml(ex.restLabel) + '</span>' +
+                '</div>' +
+                '<button type="button" class="pb-planned__log-btn">Log</button>' +
+              '</div>';
+            }).join('') +
+          '</div>';
+      }
+
       target.innerHTML =
+        plannedHtml +
         '<form class="wl-form">' +
           '<div class="field-row"><label>Date<input type="date" name="date" value="' + todayStr() + '" required></label></div>' +
           '<div class="field-row"><label>Exercise<input type="text" name="exercise" placeholder="e.g. Bench Press" required></label></div>' +
@@ -529,6 +577,20 @@
 
       var form = target.querySelector('.wl-form');
       var logEl = target.querySelector('.wl-log');
+
+      if (planned) {
+        target.querySelectorAll('.pb-planned__log-btn').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var row = btn.closest('.pb-planned__row');
+            var ex = planned.day.exercises[Number(row.dataset.index)];
+            form.exercise.value = ex.name;
+            form.sets.value = typeof ex.sets === 'number' ? ex.sets : parseInt(ex.sets, 10);
+            var repsNum = parseInt(String(ex.reps), 10);
+            if (!isNaN(repsNum)) form.reps.value = repsNum;
+            form.weight.focus();
+          });
+        });
+      }
 
       function render() {
         logEl.innerHTML = '';

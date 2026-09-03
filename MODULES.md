@@ -9,7 +9,11 @@ Running reference of every module in Fitness Canvas's scope. Update this file wh
 
 ## Training
 - **Workout Logger** — Multi-sport activity logger with its own internal sport tabs; a data-driven template system so each sport logs the fields that make sense for it. — Live
-- **Program Builder / Digital PT** — Pick a muscle group or goal, get suggested exercises with a description of what each one targets. — Live
+- **Program Builder / Digital PT — Exercise Database** — ~60 exercises across Chest, Back, Shoulders, Biceps, Triceps, Quads, Hamstrings, Glutes, Calves, and Core/Abs, each with primary/secondary muscles, equipment, difficulty, and a description of the movement and what it targets. — Live
+- **Program Builder / Digital PT — Quick Suggestions** — Pick a muscle group, get matching exercises from the database with descriptions, equipment, and difficulty. — Live
+- **Program Builder / Digital PT — Program Generator** — Build a Program form (Goal, Days Per Week, Experience Level, optional Equipment filter) assigns a Full Body / Upper-Lower / Push-Pull-Legs split based on days per week and populates each day with matching exercises and goal-based set/rep/rest prescriptions, as a 4-week program. — Live
+- **Program Builder / Digital PT — My Programs** — Save generated programs by name, view their day-by-day breakdown, and delete them. — Live
+- **Program Builder / Digital PT — Strength Training Hand-off** — Starting a saved program (only one active at a time) makes its exercises for the current day appear as a planned session at the top of Workout Logger's Strength Training tab, with a Log button per exercise to pre-fill sets/reps for logging actual weight. — Live
 - **Exercise Library & Muscle Guide** — Browse exercises by muscle group with how-to guidance. — Coming Soon
 - **Rest Timer** — Countdown between sets so you know when to go again. — Coming Soon
 - **PR Tracker** — Track personal records for your key lifts over time. — Coming Soon
