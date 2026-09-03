@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-  CanvasManager.init();
-  BottomBar.render();
+  TabManager.init();
 
   document.getElementById('add-btn').addEventListener('click', function () {
     Picker.open();

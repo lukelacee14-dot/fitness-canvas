@@ -19,7 +19,7 @@ var Picker = (function () {
       row.setAttribute('role', 'button');
       row.tabIndex = 0;
       var activate = function () {
-        CanvasManager.addModule(tool.id);
+        TabManager.addModule(tool.id);
         close();
       };
       row.addEventListener('click', activate);
