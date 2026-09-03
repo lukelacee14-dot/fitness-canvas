@@ -1,0 +1,4 @@
+# Raw USDA FoodData Central downloads and build intermediates —
+# never commit these, only the processed data/nutrition-database.json output.
+scripts/raw/
+scripts/joined-debug.json

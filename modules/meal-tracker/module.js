@@ -76,6 +76,17 @@
     return values;
   }
 
+  var nutritionDbPromise = null;
+
+  function loadNutritionDb() {
+    if (!nutritionDbPromise) {
+      nutritionDbPromise = fetch('data/nutrition-database.json')
+        .then(function (res) { return res.json(); })
+        .catch(function () { return []; });
+    }
+    return nutritionDbPromise;
+  }
+
   function computeTotals(day) {
     var totals = { calories: 0, protein: 0, carbs: 0, fat: 0 };
     SECTIONS.forEach(function (s) {
@@ -211,17 +222,20 @@
       addFoodBody.innerHTML =
         '<div class="af-choices">' +
           '<button type="button" class="btn-primary af-choice-new">New Food Item</button>' +
+          '<button type="button" class="btn-secondary af-choice-db">Search Food Database</button>' +
           '<button type="button" class="btn-secondary af-choice-saved">Choose Saved Meal</button>' +
         '</div>';
-      addFoodBody.querySelector('.af-choice-new').addEventListener('click', renderNewFoodForm);
+      addFoodBody.querySelector('.af-choice-new').addEventListener('click', function () { renderNewFoodForm(null); });
+      addFoodBody.querySelector('.af-choice-db').addEventListener('click', renderDatabaseSearch);
       addFoodBody.querySelector('.af-choice-saved').addEventListener('click', renderSavedMealPicker);
     }
 
-    function renderNewFoodForm() {
+    function renderNewFoodForm(prefill) {
       addFoodBody.innerHTML =
         '<form class="af-form">' +
-          '<div class="field-row"><label>Name<input type="text" name="name" placeholder="e.g. Grilled Chicken" required></label></div>' +
-          buildFieldRowsHtml(NUTRITION_FIELDS, null) +
+          '<div class="field-row"><label>Name<input type="text" name="name" placeholder="e.g. Grilled Chicken" required value="' +
+            (prefill ? escapeHtml(prefill.name) : '') + '"></label></div>' +
+          buildFieldRowsHtml(NUTRITION_FIELDS, prefill) +
           '<div class="profile-form-actions">' +
             '<button type="button" class="btn-secondary af-back">Back</button>' +
             '<button type="submit" class="btn-primary">Add</button>' +
@@ -241,6 +255,65 @@
 
         pushEntry(pendingSection, entry);
         closeAddFood();
+      });
+    }
+
+    function renderDatabaseSearch() {
+      addFoodBody.innerHTML =
+        '<div class="field-row"><label>Search Food<input type="text" class="fd-search-input" placeholder="e.g. chicken breast" autocomplete="off"></label></div>' +
+        '<div class="fd-results"></div>' +
+        '<p class="fd-attribution">Nutrition data from USDA FoodData Central (public domain).</p>' +
+        '<button type="button" class="btn-secondary af-back">Back</button>';
+
+      var searchInput = addFoodBody.querySelector('.fd-search-input');
+      var resultsEl = addFoodBody.querySelector('.fd-results');
+
+      addFoodBody.querySelector('.af-back').addEventListener('click', renderAddFoodChoice);
+
+      loadNutritionDb().then(function (db) {
+        searchInput.addEventListener('input', function () {
+          var q = searchInput.value.trim().toLowerCase();
+          if (!q) { resultsEl.innerHTML = ''; return; }
+
+          var matches = db.filter(function (f) { return f.name.toLowerCase().indexOf(q) !== -1; }).slice(0, 25);
+          if (matches.length === 0) {
+            resultsEl.innerHTML = '<p class="empty-hint">No matches found.</p>';
+            return;
+          }
+
+          resultsEl.innerHTML = '';
+          matches.forEach(function (f) {
+            var row = document.createElement('div');
+            row.className = 'af-saved-row';
+            row.innerHTML =
+              '<span class="af-saved-name">' + escapeHtml(f.name) + '</span>' +
+              '<span class="af-saved-cals">' + f.calories + ' kcal/100g</span>';
+            row.addEventListener('click', function () { renderGramsPrompt(f); });
+            resultsEl.appendChild(row);
+          });
+        });
+        searchInput.focus();
+      });
+    }
+
+    function renderGramsPrompt(food) {
+      addFoodBody.innerHTML =
+        '<div class="fd-selected"><strong>' + escapeHtml(food.name) + '</strong><span>' + food.calories + ' kcal per 100g</span></div>' +
+        '<div class="field-row"><label>Grams Consumed<input type="number" class="fd-grams-input" min="0" step="any" value="100"></label></div>' +
+        '<div class="profile-form-actions">' +
+          '<button type="button" class="btn-secondary fd-back-search">Back</button>' +
+          '<button type="button" class="btn-primary fd-continue-btn">Continue</button>' +
+        '</div>';
+
+      addFoodBody.querySelector('.fd-back-search').addEventListener('click', renderDatabaseSearch);
+      addFoodBody.querySelector('.fd-continue-btn').addEventListener('click', function () {
+        var grams = Number(addFoodBody.querySelector('.fd-grams-input').value) || 0;
+        var scale = grams / 100;
+        var prefill = { name: food.name };
+        NUTRITION_KEYS.forEach(function (key) {
+          if (food[key] !== undefined) prefill[key] = Math.round(food[key] * scale * 10) / 10;
+        });
+        renderNewFoodForm(prefill);
       });
     }
 

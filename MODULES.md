@@ -122,7 +122,8 @@ Running reference of every module in Fitness Canvas's scope. Update this file wh
 - Breathwork — Coming Soon
 
 ## Nutrition
-- **Meal Tracker — Daily Log** — Log food under Breakfast, Lunch, Dinner, or Snacks (manual entry or from a saved meal), with a running daily calorie/macro summary. — Live
+- **Meal Tracker — Daily Log** — Log food under Breakfast, Lunch, Dinner, or Snacks (manual entry, from a saved meal, or searched from the built-in food database), with a running daily calorie/macro summary. — Live
+- **Meal Tracker — Food Database Search** — Built-in, offline nutrition database (~350 common generic whole foods, sourced from real USDA FoodData Central SR Legacy + Foundation Foods data, processed at build time) — no API key or network call required. Search by name, enter grams consumed, and the matching food's per-100g values are scaled and pre-filled into the entry form. — Live
 - **Meal Tracker — Saved Meals** — Create, edit, and delete reusable named meal templates (full nutrition fields) to log repeatedly without re-typing. — Live
 - **Meal Tracker — Water Intake** — Increment/decrement water for the day (cups or mL) with an optional daily goal. — Live
 - **Meal Tracker — Weekly Summary** — 7-day table of daily calorie/macro totals to spot trends at a glance. — Live
