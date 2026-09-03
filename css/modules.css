@@ -213,6 +213,158 @@
   color: var(--muted);
 }
 
+.mt-nav {
+  display: flex;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.mt-nav-btn {
+  flex: 1;
+  padding: 0.5rem 0.4rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.mt-nav-btn--active {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border-color: var(--accent);
+}
+
+.mt-water {
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 0.7rem 0.8rem;
+  margin-bottom: 1.25rem;
+}
+
+.mt-water__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mt-water__label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.mt-water__controls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.mt-water__btn {
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 999px;
+  border: none;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mt-water__amount {
+  font-weight: 600;
+  font-size: 0.9rem;
+  min-width: 3.5rem;
+  text-align: center;
+}
+
+.mt-water__meta {
+  margin-top: 0.4rem;
+  font-size: 0.75rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mt-water__setgoal,
+.mt-water__editgoal {
+  border: none;
+  background: none;
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0;
+}
+
+.mt-section {
+  margin-bottom: 1.25rem;
+}
+
+.mt-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.mt-section__header h4 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.mt-add-food-btn {
+  border: none;
+  background: var(--bg);
+  color: var(--accent);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.4rem 0.7rem;
+  border-radius: 999px;
+}
+
+.af-choices {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.af-saved-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.af-saved-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.75rem;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+}
+
+.af-saved-name {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.af-saved-cals {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.sm-row-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
 /* Program builder */
 .pb-tabs {
   display: flex;

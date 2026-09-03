@@ -10,6 +10,9 @@ Running reference of every module in Fitness Canvas's scope. Update this file wh
 ## Training
 - **Workout Logger** — Multi-sport activity logger with its own internal sport tabs; a data-driven template system so each sport logs the fields that make sense for it. — Live
 - **Program Builder / Digital PT** — Pick a muscle group or goal, get suggested exercises with a description of what each one targets. — Live
+- **Exercise Library & Muscle Guide** — Browse exercises by muscle group with how-to guidance. — Coming Soon
+- **Rest Timer** — Countdown between sets so you know when to go again. — Coming Soon
+- **PR Tracker** — Track personal records for your key lifts over time. — Coming Soon
 
 ### Workout Logger — Sports
 
@@ -113,13 +116,13 @@ Running reference of every module in Fitness Canvas's scope. Update this file wh
 - Triathlon — Coming Soon
 - Meditation — Coming Soon
 - Breathwork — Coming Soon
-- **Exercise Library & Muscle Guide** — Browse exercises by muscle group with how-to guidance. — Coming Soon
-- **Rest Timer** — Countdown between sets so you know when to go again. — Coming Soon
-- **PR Tracker** — Track personal records for your key lifts over time. — Coming Soon
 
 ## Nutrition
-- **Meal Tracker** — Log meals, see daily calorie/macro totals. — Live
-- **Water Tracker** — Log water intake and track progress toward a daily goal. — Coming Soon
+- **Meal Tracker — Daily Log** — Log food under Breakfast, Lunch, Dinner, or Snacks (manual entry or from a saved meal), with a running daily calorie/macro summary. — Live
+- **Meal Tracker — Saved Meals** — Create, edit, and delete reusable named meal templates (full nutrition fields) to log repeatedly without re-typing. — Live
+- **Meal Tracker — Water Intake** — Increment/decrement water for the day (cups or mL) with an optional daily goal. — Live
+- **Meal Tracker — Weekly Summary** — 7-day table of daily calorie/macro totals to spot trends at a glance. — Live
+- **Water Tracker** — Standalone water-tracking tool (separate from Meal Tracker's built-in water widget). — Coming Soon
 - **Recipe Importer** — Import a recipe and break it down into macros per serving. — Coming Soon
 
 ## Body & Recovery
