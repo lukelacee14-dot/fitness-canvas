@@ -2,6 +2,11 @@
 
 Running reference of every module in Fitness Canvas's scope. Update this file whenever a module's status changes.
 
+## Account Bar
+- **Personal Profile** — Name, age, and profile picture (uploaded image is compressed and stored as base64 in localStorage); edit from the profile screen. — Live
+- **Search People** — Find and connect with other users. — Coming Soon
+- **Sport Info Lookup** — Look up info for a sport. — Coming Soon
+
 ## Training
 - **Workout Logger** — Multi-sport activity logger with its own internal sport tabs; a data-driven template system so each sport logs the fields that make sense for it. — Live
 - **Program Builder / Digital PT** — Pick a muscle group or goal, get suggested exercises with a description of what each one targets. — Live

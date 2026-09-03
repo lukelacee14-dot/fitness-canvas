@@ -14,6 +14,11 @@
 </head>
 <body>
 <div class="app">
+  <nav id="top-bar" class="top-bar">
+    <div id="account-tab-strip" class="tab-strip"></div>
+    <button id="account-add-btn" class="bar-add" type="button" aria-label="Add an account item">+</button>
+  </nav>
+
   <header class="app-header">
     <h1 class="app-header__title">Fitness Canvas</h1>
   </header>
@@ -24,7 +29,7 @@
 
   <nav id="bottom-bar" class="bottom-bar">
     <div id="tab-strip" class="tab-strip"></div>
-    <button id="add-btn" class="bottom-bar__add" type="button" aria-label="Add a tool">+</button>
+    <button id="add-btn" class="bar-add" type="button" aria-label="Add a tool">+</button>
   </nav>
 </div>
 
@@ -48,16 +53,43 @@
   </div>
 </div>
 
+<div id="account-picker" class="overlay" hidden>
+  <div class="overlay__panel">
+    <div class="overlay__header">
+      <h2>Add to Account Bar</h2>
+      <button id="account-picker-close" class="icon-btn" type="button" aria-label="Close">&#10005;</button>
+    </div>
+    <div id="account-picker-list" class="overlay__body"></div>
+  </div>
+</div>
+
+<div id="account-remove-confirm" class="overlay overlay--center" hidden>
+  <div class="confirm-dialog">
+    <p class="confirm-dialog__text">Remove <strong id="account-remove-confirm-name"></strong> from your account bar?</p>
+    <div class="confirm-dialog__actions">
+      <button id="account-remove-confirm-cancel" type="button" class="btn-secondary">Cancel</button>
+      <button id="account-remove-confirm-ok" type="button" class="btn-danger">Remove</button>
+    </div>
+  </div>
+</div>
+
 <script src="js/storage.js"></script>
 <script src="js/catalog.js"></script>
 <script src="js/registry.js"></script>
+<script src="js/account-catalog.js"></script>
+<script src="js/account-registry.js"></script>
 <script src="js/tabs.js"></script>
+<script src="js/account-tabs.js"></script>
 <script src="js/remove-confirm.js"></script>
+<script src="js/account-remove-confirm.js"></script>
 <script src="js/tabstrip.js"></script>
+<script src="js/account-tabstrip.js"></script>
 <script src="js/picker.js"></script>
+<script src="js/account-picker.js"></script>
 <script src="modules/workout-logger/module.js"></script>
 <script src="modules/program-builder/module.js"></script>
 <script src="modules/meal-tracker/module.js"></script>
+<script src="modules/profile/module.js"></script>
 <script src="js/main.js"></script>
 </body>
 </html>

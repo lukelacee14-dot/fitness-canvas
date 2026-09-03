@@ -1,14 +1,14 @@
-var TabStrip = (function () {
+var AccountTabStrip = (function () {
   var LONG_PRESS_MS = 550;
-  var stripEl = document.getElementById('tab-strip');
+  var stripEl = document.getElementById('account-tab-strip');
 
-  function buildTab(moduleId, isActive) {
-    var def = ModuleRegistry.get(moduleId);
+  function buildTab(id, isActive) {
+    var def = AccountRegistry.get(id);
     var btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'tab-btn' + (isActive ? ' tab-btn--active' : '');
-    btn.dataset.moduleId = moduleId;
-    btn.setAttribute('aria-label', def ? def.title : moduleId);
+    btn.dataset.itemId = id;
+    btn.setAttribute('aria-label', def ? def.title : id);
     btn.innerHTML = '<span>' + (def ? def.icon : '•') + '</span>';
 
     var timer = null;
@@ -21,7 +21,7 @@ var TabStrip = (function () {
         if (navigator.vibrate) {
           try { navigator.vibrate(15); } catch (e) {}
         }
-        RemoveConfirm.open(moduleId);
+        AccountRemoveConfirm.open(id);
       }, LONG_PRESS_MS);
     }
 
@@ -42,21 +42,21 @@ var TabStrip = (function () {
         longPressed = false;
         return;
       }
-      TabManager.switchTab(moduleId);
+      AccountTabManager.switchTab(id);
     });
 
     return btn;
   }
 
   function render() {
-    var active = TabManager.getActive();
-    var current = TabManager.getCurrentTab();
-    var focused = TabManager.isActiveSource();
+    var active = AccountTabManager.getActive();
+    var current = AccountTabManager.getCurrentTab();
+    var focused = AccountTabManager.isActiveSource();
 
     stripEl.innerHTML = '';
-    active.forEach(function (moduleId) {
-      if (!ModuleRegistry.get(moduleId)) return;
-      stripEl.appendChild(buildTab(moduleId, focused && moduleId === current));
+    active.forEach(function (id) {
+      if (!AccountRegistry.get(id)) return;
+      stripEl.appendChild(buildTab(id, focused && id === current));
     });
   }
 

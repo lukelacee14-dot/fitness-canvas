@@ -1,23 +1,23 @@
-var TabManager = (function () {
-  var active = Storage.get('active', []);
-  var currentTab = Storage.get('currentTab', null);
+var AccountTabManager = (function () {
+  var active = Storage.get('accountActive', []);
+  var currentTab = Storage.get('accountCurrentTab', null);
   var screenEl = document.getElementById('screen');
 
   function persist() {
-    Storage.set('active', active);
-    Storage.set('currentTab', currentTab);
+    Storage.set('accountActive', active);
+    Storage.set('accountCurrentTab', currentTab);
   }
 
   function markActive() {
-    Storage.set('lastActiveSource', 'tool');
+    Storage.set('lastActiveSource', 'account');
   }
 
   function isActiveSource() {
-    return Storage.get('lastActiveSource', 'tool') === 'tool';
+    return Storage.get('lastActiveSource', 'tool') === 'account';
   }
 
-  function makeApi(moduleId) {
-    var key = 'module:' + moduleId;
+  function makeApi(id) {
+    var key = 'account-module:' + id;
     return {
       load: function (fallback) { return Storage.get(key, fallback); },
       save: function (value) { Storage.set(key, value); }
@@ -25,7 +25,7 @@ var TabManager = (function () {
   }
 
   function showEmpty() {
-    screenEl.innerHTML = '<p class="screen-empty">Tap + to add your first tool.</p>';
+    screenEl.innerHTML = '<p class="screen-empty">Tap + to add an account item.</p>';
   }
 
   function renderScreen() {
@@ -34,7 +34,7 @@ var TabManager = (function () {
       return;
     }
 
-    var def = ModuleRegistry.get(currentTab);
+    var def = AccountRegistry.get(currentTab);
     if (!def) {
       showEmpty();
       return;
@@ -56,34 +56,34 @@ var TabManager = (function () {
     def.mount(body, makeApi(currentTab));
   }
 
-  function switchTab(moduleId) {
-    if (active.indexOf(moduleId) === -1) return;
-    currentTab = moduleId;
+  function switchTab(id) {
+    if (active.indexOf(id) === -1) return;
+    currentTab = id;
     persist();
     markActive();
     renderScreen();
-    if (window.TabStrip) window.TabStrip.render();
     if (window.AccountTabStrip) window.AccountTabStrip.render();
+    if (window.TabStrip) window.TabStrip.render();
   }
 
-  function addModule(moduleId) {
-    if (active.indexOf(moduleId) === -1) {
-      active.push(moduleId);
+  function addItem(id) {
+    if (active.indexOf(id) === -1) {
+      active.push(id);
     }
-    currentTab = moduleId;
+    currentTab = id;
     persist();
     markActive();
-    if (window.TabStrip) window.TabStrip.render();
-    renderScreen();
     if (window.AccountTabStrip) window.AccountTabStrip.render();
+    renderScreen();
+    if (window.TabStrip) window.TabStrip.render();
   }
 
-  function removeModule(moduleId) {
-    active = active.filter(function (id) { return id !== moduleId; });
-    var wasCurrent = currentTab === moduleId;
+  function removeItem(id) {
+    active = active.filter(function (i) { return i !== id; });
+    var wasCurrent = currentTab === id;
     if (wasCurrent) currentTab = null;
     persist();
-    if (window.TabStrip) window.TabStrip.render();
+    if (window.AccountTabStrip) window.AccountTabStrip.render();
     if (wasCurrent && isActiveSource()) renderScreen();
   }
 
@@ -91,7 +91,7 @@ var TabManager = (function () {
     if (currentTab && active.indexOf(currentTab) === -1) {
       currentTab = null;
     }
-    if (window.TabStrip) window.TabStrip.render();
+    if (window.AccountTabStrip) window.AccountTabStrip.render();
     if (isActiveSource()) renderScreen();
   }
 
@@ -100,8 +100,8 @@ var TabManager = (function () {
 
   return {
     init: init,
-    addModule: addModule,
-    removeModule: removeModule,
+    addItem: addItem,
+    removeItem: removeItem,
     switchTab: switchTab,
     getActive: getActive,
     getCurrentTab: getCurrentTab,
