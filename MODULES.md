@@ -131,9 +131,10 @@ Running reference of every module in Fitness Canvas's scope. Update this file wh
 - **Recipe Importer** — Import a recipe and break it down into macros per serving. — Coming Soon
 
 ## Body & Recovery
-- **Body Measurements** — Track weight and body measurements over time. — Coming Soon
-- **Progress Photos** — Save progress photos side by side to track visual change. — Coming Soon
-- **Sleep Tracker** — Log sleep duration and quality each night. — Coming Soon
+- **Body Measurements** — Log weight, body fat %, and circumference measurements (waist, chest, hips, arms, thighs, neck), with a date-grouped history and a per-metric trend chart. — Live
+- **Progress Photos** — Add a dated photo (upload or mobile camera capture), stored compressed as base64 in localStorage; shown in a scrollable gallery to compare over time. — Live
+- **Sleep Tracker** — Log duration, sleep quality (Poor/Fair/Good/Great), and optional bedtime/wake time, with a history list and a 7-day rolling average duration. — Live
+- **Soreness/RPE Log** — Quick daily log of overall soreness (1-10), optional sore muscle groups, and optional training RPE (1-10), with a date-grouped history. — Live
 
 ## Motivation
 - **Streaks** — Track consecutive days of hitting your fitness goals. — Coming Soon

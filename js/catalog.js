@@ -20,9 +20,10 @@ var CATALOG = [
   {
     category: 'Body & Recovery',
     tools: [
-      { id: 'body-measurements', title: 'Body Measurements', description: 'Track weight and body measurements over time.', status: 'soon' },
-      { id: 'progress-photos', title: 'Progress Photos', description: 'Save progress photos side by side to track visual change.', status: 'soon' },
-      { id: 'sleep-tracker', title: 'Sleep Tracker', description: 'Log sleep duration and quality each night.', status: 'soon' }
+      { id: 'body-measurements', title: 'Body Measurements', description: 'Log weight, body fat %, and circumference measurements, with trend charts over time.', status: 'live' },
+      { id: 'progress-photos', title: 'Progress Photos', description: 'Save dated progress photos in a scrollable gallery to compare over time.', status: 'live' },
+      { id: 'sleep-tracker', title: 'Sleep Tracker', description: 'Log sleep duration, quality, bedtime, and wake time, with a 7-day rolling average.', status: 'live' },
+      { id: 'soreness-rpe-log', title: 'Soreness/RPE Log', description: 'Quick daily log of overall soreness, sore muscle groups, and training RPE.', status: 'live' }
     ]
   },
   {
