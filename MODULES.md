@@ -136,6 +136,9 @@ Running reference of every module in Fitness Canvas's scope. Update this file wh
 - **Sleep Tracker** — Log duration, sleep quality (Poor/Fair/Good/Great), and optional bedtime/wake time, with a history list and a 7-day rolling average duration. — Live
 - **Soreness/RPE Log** — Quick daily log of overall soreness (1-10), optional sore muscle groups, and optional training RPE (1-10), with a date-grouped history. — Live
 
+## Analytics
+- **Progress & Analytics** — Read-only summary tool: draws from other modules' existing localStorage data rather than storing any of its own. Strength Progress (pick a logged exercise, see a weight-over-time trend plus best set), Body Trend (weight over time from Body Measurements), Calorie Trend (rolling 30-day daily totals + average from Meal Tracker), and Personal Records by Sport (best distance/duration/score/etc. per sport logged under Workout Logger, only shown where the sport has data and a metric that makes sense). — Live
+
 ## Motivation
 - **Streaks** — Track consecutive days of hitting your fitness goals. — Coming Soon
 - **Activity Feed** — See a timeline of everything you've logged recently. — Coming Soon

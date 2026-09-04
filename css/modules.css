@@ -906,3 +906,69 @@
   font-size: 1rem;
   font-weight: 700;
 }
+
+/* Progress & Analytics */
+.pa-section {
+  margin-bottom: 1.75rem;
+}
+
+.pa-section:last-child {
+  margin-bottom: 0;
+}
+
+.pa-section__title {
+  font-size: 1rem;
+  margin: 0 0 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.pa-best {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.pa-best strong {
+  color: var(--text);
+}
+
+.pa-record-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.pa-record-card:last-child {
+  margin-bottom: 0;
+}
+
+.pa-record-card__title {
+  margin: 0 0 0.5rem;
+  font-size: 0.9rem;
+}
+
+.pa-record-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  padding: 0.2rem 0;
+}
+
+.pa-record-row__name {
+  font-weight: 600;
+}
+
+.pa-record-row__value {
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.pa-record-row__date {
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}

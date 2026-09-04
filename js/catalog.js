@@ -27,6 +27,12 @@ var CATALOG = [
     ]
   },
   {
+    category: 'Analytics',
+    tools: [
+      { id: 'progress-analytics', title: 'Progress & Analytics', description: 'Read-only trends and personal records pulled from your other tools — stores no data of its own.', status: 'live' }
+    ]
+  },
+  {
     category: 'Motivation',
     tools: [
       { id: 'streaks', title: 'Streaks', description: 'Track consecutive days of hitting your fitness goals.', status: 'soon' },
