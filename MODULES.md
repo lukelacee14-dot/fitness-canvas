@@ -20,26 +20,28 @@ Running reference of every module in Fitness Canvas's scope. Update this file wh
 
 ### Workout Logger — Sports
 
+This batch moved 28 sports from Coming Soon to Live, each mapped onto an existing field template (GPS Endurance, Winter Sport, Water Sport, Team Sport, Racket Sport, Combat/Interval, or Mind/Recovery) or, for Golf and Bouldering, a bespoke field set. The remaining 27 niche sports below stay Coming Soon, queued for a future batch.
+
 #### Running
 - Run — Live
 - Trail Run — Live
 - Treadmill — Live
-- Track Run — Coming Soon
-- Ultra Run — Coming Soon
+- Track Run — Live
+- Ultra Run — Live
 - Virtual Run — Coming Soon
-- Indoor Track — Coming Soon
+- Indoor Track — Live
 - Obstacle Racing — Coming Soon
 
 #### Cycling
 - Road Bike — Live
 - Mountain Bike — Live
 - Indoor Bike — Live
-- Gravel Bike — Coming Soon
-- eBike — Coming Soon
+- Gravel Bike — Live
+- eBike — Live
 - eMTB — Coming Soon
 - BMX — Coming Soon
 - Cyclocross — Coming Soon
-- Bike Commute — Coming Soon
+- Bike Commute — Live
 - Bike Tour — Coming Soon
 
 #### Swimming
@@ -50,12 +52,12 @@ Running reference of every module in Fitness Canvas's scope. Update this file wh
 - Hike — Live
 - Walk — Live
 - Mountaineering — Coming Soon
-- Horseback Riding — Coming Soon
-- Golf — Coming Soon
+- Horseback Riding — Live
+- Golf — Live (bespoke fields: Holes Played, Total Score, Par for the Course, Fairways Hit, Putts, Duration, Calories Burned, Notes)
 - Fishing — Coming Soon
 - Hunting — Coming Soon
 - Archery — Coming Soon
-- Bouldering — Coming Soon
+- Bouldering — Live (bespoke fields: Duration, Number of Routes/Problems Completed, Highest Grade Achieved, Calories Burned, Avg Heart Rate, Notes)
 - Disc Golf — Coming Soon
 - Inline Skating — Coming Soon
 
@@ -63,9 +65,9 @@ Running reference of every module in Fitness Canvas's scope. Update this file wh
 - Ski — Live
 - Snowboard — Live
 - Backcountry Ski — Coming Soon
-- Cross-Country Ski — Coming Soon
-- Snowshoe — Coming Soon
-- Ice Skating — Coming Soon
+- Cross-Country Ski — Live
+- Snowshoe — Live
+- Ice Skating — Live
 - Snowmobile — Coming Soon
 
 #### Water Sports
@@ -73,10 +75,10 @@ Running reference of every module in Fitness Canvas's scope. Update this file wh
 - Stand-Up Paddleboard — Live
 - Surf — Live
 - Sail — Coming Soon
-- Row — Coming Soon
-- Wakeboard — Coming Soon
+- Row — Live
+- Wakeboard — Live
 - Wakesurf — Coming Soon
-- Water Ski — Coming Soon
+- Water Ski — Live
 - Kiteboard — Coming Soon
 - Windsurf — Coming Soon
 
@@ -84,24 +86,24 @@ Running reference of every module in Fitness Canvas's scope. Update this file wh
 - Basketball — Live
 - Soccer — Live
 - American Football — Live
-- Baseball — Coming Soon
+- Baseball — Live (own stat fields: Hits, Runs, RBIs, Strikeouts, Innings Played)
 - Softball — Coming Soon
-- Ice Hockey — Coming Soon
+- Ice Hockey — Live (own stat fields: Goals, Assists, Penalty Minutes, Shots on Goal)
 - Field Hockey — Coming Soon
 - Lacrosse — Coming Soon
 - Rugby — Coming Soon
-- Cricket — Coming Soon
-- Volleyball — Coming Soon
+- Cricket — Live (own stat fields: Runs Scored, Wickets Taken, Overs Bowled, Catches)
+- Volleyball — Live (own stat fields: Kills, Blocks, Aces, Digs, Sets Played)
 - Ultimate Frisbee — Coming Soon
 
 #### Racket Sports
 - Tennis — Live
 - Pickleball — Live
-- Padel — Coming Soon
-- Badminton — Coming Soon
-- Squash — Coming Soon
+- Padel — Live
+- Badminton — Live
+- Squash — Live
 - Racquetball — Coming Soon
-- Table Tennis — Coming Soon
+- Table Tennis — Live
 
 #### Gym
 - Strength Training — Live
@@ -111,15 +113,15 @@ Running reference of every module in Fitness Canvas's scope. Update this file wh
 - Elliptical — Live
 - Indoor Row — Live
 - Cardio — Coming Soon
-- Pilates — Coming Soon
-- Stair Stepper — Coming Soon
-- Jump Rope — Coming Soon
+- Pilates — Live
+- Stair Stepper — Live
+- Jump Rope — Live
 - Mobility — Coming Soon
 
 #### Other
 - Triathlon — Coming Soon
-- Meditation — Coming Soon
-- Breathwork — Coming Soon
+- Meditation — Live
+- Breathwork — Live
 
 ## Nutrition
 - **Meal Tracker — Daily Log** — Log food under Breakfast, Lunch, Dinner, or Snacks (manual entry, from a saved meal, or searched from the built-in food database), with a running daily calorie/macro summary. — Live

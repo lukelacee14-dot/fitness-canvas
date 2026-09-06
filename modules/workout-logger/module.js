@@ -109,6 +109,32 @@
     pickleball: [
       { key: 'pointsScored', label: 'Points Scored', type: 'number' },
       { key: 'pointsAgainst', label: 'Points Against', type: 'number' }
+    ],
+    baseball: [
+      { key: 'hits', label: 'Hits', type: 'number' },
+      { key: 'runs', label: 'Runs', type: 'number' },
+      { key: 'rbis', label: 'RBIs', type: 'number' },
+      { key: 'strikeouts', label: 'Strikeouts', type: 'number' },
+      { key: 'inningsPlayed', label: 'Innings Played', type: 'number' }
+    ],
+    volleyball: [
+      { key: 'kills', label: 'Kills', type: 'number' },
+      { key: 'blocks', label: 'Blocks', type: 'number' },
+      { key: 'aces', label: 'Aces', type: 'number' },
+      { key: 'digs', label: 'Digs', type: 'number' },
+      { key: 'setsPlayed', label: 'Sets Played', type: 'number' }
+    ],
+    'ice-hockey': [
+      { key: 'goals', label: 'Goals', type: 'number' },
+      { key: 'assists', label: 'Assists', type: 'number' },
+      { key: 'penaltyMinutes', label: 'Penalty Minutes', type: 'number' },
+      { key: 'shotsOnGoal', label: 'Shots on Goal', type: 'number' }
+    ],
+    cricket: [
+      { key: 'runsScored', label: 'Runs Scored', type: 'number' },
+      { key: 'wicketsTaken', label: 'Wickets Taken', type: 'number' },
+      { key: 'oversBowled', label: 'Overs Bowled', type: 'number' },
+      { key: 'catches', label: 'Catches', type: 'number' }
     ]
   };
 
@@ -120,7 +146,21 @@
     teamSport: { before: [F.durationPlayed, F.yourScore, F.opponentScore], after: [F.avgHeartRate, F.caloriesBurned, F.notes] },
     racketSport: { before: [F.duration, F.setsWon, F.setsLost], after: [F.avgHeartRate, F.caloriesBurned, F.notes] },
     combatInterval: { fields: [F.duration, F.roundsIntervals, F.avgHeartRate, F.maxHeartRate, F.caloriesBurned, F.notes] },
-    mindRecovery: { fields: [F.duration, F.styleType, F.avgHeartRate, F.caloriesBurned, F.notes] }
+    mindRecovery: { fields: [F.duration, F.styleType, F.avgHeartRate, F.caloriesBurned, F.notes] },
+    golf: { fields: [
+      { key: 'holesPlayed', label: 'Holes Played', type: 'select', options: ['9', '18'] },
+      { key: 'totalScore', label: 'Total Score', type: 'number' },
+      { key: 'parForCourse', label: 'Par for the Course', type: 'number' },
+      { key: 'fairwaysHit', label: 'Fairways Hit', type: 'number' },
+      { key: 'putts', label: 'Putts', type: 'number' },
+      F.duration, F.caloriesBurned, F.notes
+    ] },
+    bouldering: { fields: [
+      F.duration,
+      { key: 'routesCompleted', label: 'Number of Routes/Problems Completed', type: 'number' },
+      { key: 'highestGrade', label: 'Highest Grade Achieved', type: 'text', placeholder: 'e.g. V4 or 5.10a' },
+      F.caloriesBurned, F.avgHeartRate, F.notes
+    ] }
   };
 
   function templateFields(templateId, extra) {
@@ -138,10 +178,10 @@
         { id: 'run', title: 'Run', status: 'live', template: 'gpsEndurance' },
         { id: 'trail-run', title: 'Trail Run', status: 'live', template: 'gpsEndurance' },
         { id: 'treadmill', title: 'Treadmill', status: 'live', template: 'gpsEndurance' },
-        { id: 'track-run', title: 'Track Run', status: 'soon' },
-        { id: 'ultra-run', title: 'Ultra Run', status: 'soon' },
+        { id: 'track-run', title: 'Track Run', status: 'live', template: 'gpsEndurance' },
+        { id: 'ultra-run', title: 'Ultra Run', status: 'live', template: 'gpsEndurance' },
         { id: 'virtual-run', title: 'Virtual Run', status: 'soon' },
-        { id: 'indoor-track', title: 'Indoor Track', status: 'soon' },
+        { id: 'indoor-track', title: 'Indoor Track', status: 'live', template: 'gpsEndurance' },
         { id: 'obstacle-racing', title: 'Obstacle Racing', status: 'soon' }
       ]
     },
@@ -151,12 +191,12 @@
         { id: 'road-bike', title: 'Road Bike', status: 'live', template: 'gpsEndurance' },
         { id: 'mountain-bike', title: 'Mountain Bike', status: 'live', template: 'gpsEndurance' },
         { id: 'indoor-bike', title: 'Indoor Bike', status: 'live', template: 'gpsEndurance' },
-        { id: 'gravel-bike', title: 'Gravel Bike', status: 'soon' },
-        { id: 'ebike', title: 'eBike', status: 'soon' },
+        { id: 'gravel-bike', title: 'Gravel Bike', status: 'live', template: 'gpsEndurance' },
+        { id: 'ebike', title: 'eBike', status: 'live', template: 'gpsEndurance' },
         { id: 'emtb', title: 'eMTB', status: 'soon' },
         { id: 'bmx', title: 'BMX', status: 'soon' },
         { id: 'cyclocross', title: 'Cyclocross', status: 'soon' },
-        { id: 'bike-commute', title: 'Bike Commute', status: 'soon' },
+        { id: 'bike-commute', title: 'Bike Commute', status: 'live', template: 'gpsEndurance' },
         { id: 'bike-tour', title: 'Bike Tour', status: 'soon' }
       ]
     },
@@ -173,12 +213,12 @@
         { id: 'hike', title: 'Hike', status: 'live', template: 'gpsEndurance' },
         { id: 'walk', title: 'Walk', status: 'live', template: 'gpsEndurance' },
         { id: 'mountaineering', title: 'Mountaineering', status: 'soon' },
-        { id: 'horseback-riding', title: 'Horseback Riding', status: 'soon' },
-        { id: 'golf', title: 'Golf', status: 'soon' },
+        { id: 'horseback-riding', title: 'Horseback Riding', status: 'live', template: 'gpsEndurance' },
+        { id: 'golf', title: 'Golf', status: 'live', template: 'golf' },
         { id: 'fishing', title: 'Fishing', status: 'soon' },
         { id: 'hunting', title: 'Hunting', status: 'soon' },
         { id: 'archery', title: 'Archery', status: 'soon' },
-        { id: 'bouldering', title: 'Bouldering', status: 'soon' },
+        { id: 'bouldering', title: 'Bouldering', status: 'live', template: 'bouldering' },
         { id: 'disc-golf', title: 'Disc Golf', status: 'soon' },
         { id: 'inline-skating', title: 'Inline Skating', status: 'soon' }
       ]
@@ -189,9 +229,9 @@
         { id: 'ski', title: 'Ski', status: 'live', template: 'winterSport' },
         { id: 'snowboard', title: 'Snowboard', status: 'live', template: 'winterSport' },
         { id: 'backcountry-ski', title: 'Backcountry Ski', status: 'soon' },
-        { id: 'cross-country-ski', title: 'Cross-Country Ski', status: 'soon' },
-        { id: 'snowshoe', title: 'Snowshoe', status: 'soon' },
-        { id: 'ice-skating', title: 'Ice Skating', status: 'soon' },
+        { id: 'cross-country-ski', title: 'Cross-Country Ski', status: 'live', template: 'winterSport' },
+        { id: 'snowshoe', title: 'Snowshoe', status: 'live', template: 'winterSport' },
+        { id: 'ice-skating', title: 'Ice Skating', status: 'live', template: 'winterSport' },
         { id: 'snowmobile', title: 'Snowmobile', status: 'soon' }
       ]
     },
@@ -202,10 +242,10 @@
         { id: 'sup', title: 'Stand-Up Paddleboard', status: 'live', template: 'waterSport' },
         { id: 'surf', title: 'Surf', status: 'live', template: 'waterSport' },
         { id: 'sail', title: 'Sail', status: 'soon' },
-        { id: 'row', title: 'Row', status: 'soon' },
-        { id: 'wakeboard', title: 'Wakeboard', status: 'soon' },
+        { id: 'row', title: 'Row', status: 'live', template: 'waterSport' },
+        { id: 'wakeboard', title: 'Wakeboard', status: 'live', template: 'waterSport' },
         { id: 'wakesurf', title: 'Wakesurf', status: 'soon' },
-        { id: 'water-ski', title: 'Water Ski', status: 'soon' },
+        { id: 'water-ski', title: 'Water Ski', status: 'live', template: 'waterSport' },
         { id: 'kiteboard', title: 'Kiteboard', status: 'soon' },
         { id: 'windsurf', title: 'Windsurf', status: 'soon' }
       ]
@@ -216,14 +256,14 @@
         { id: 'basketball', title: 'Basketball', status: 'live', template: 'teamSport', extra: 'basketball' },
         { id: 'soccer', title: 'Soccer', status: 'live', template: 'teamSport', extra: 'soccer' },
         { id: 'american-football', title: 'American Football', status: 'live', template: 'teamSport', extra: 'american-football' },
-        { id: 'baseball', title: 'Baseball', status: 'soon' },
+        { id: 'baseball', title: 'Baseball', status: 'live', template: 'teamSport', extra: 'baseball' },
         { id: 'softball', title: 'Softball', status: 'soon' },
-        { id: 'ice-hockey', title: 'Ice Hockey', status: 'soon' },
+        { id: 'ice-hockey', title: 'Ice Hockey', status: 'live', template: 'teamSport', extra: 'ice-hockey' },
         { id: 'field-hockey', title: 'Field Hockey', status: 'soon' },
         { id: 'lacrosse', title: 'Lacrosse', status: 'soon' },
         { id: 'rugby', title: 'Rugby', status: 'soon' },
-        { id: 'cricket', title: 'Cricket', status: 'soon' },
-        { id: 'volleyball', title: 'Volleyball', status: 'soon' },
+        { id: 'cricket', title: 'Cricket', status: 'live', template: 'teamSport', extra: 'cricket' },
+        { id: 'volleyball', title: 'Volleyball', status: 'live', template: 'teamSport', extra: 'volleyball' },
         { id: 'ultimate-frisbee', title: 'Ultimate Frisbee', status: 'soon' }
       ]
     },
@@ -232,11 +272,11 @@
       sports: [
         { id: 'tennis', title: 'Tennis', status: 'live', template: 'racketSport', extra: 'tennis' },
         { id: 'pickleball', title: 'Pickleball', status: 'live', template: 'racketSport', extra: 'pickleball' },
-        { id: 'padel', title: 'Padel', status: 'soon' },
-        { id: 'badminton', title: 'Badminton', status: 'soon' },
-        { id: 'squash', title: 'Squash', status: 'soon' },
+        { id: 'padel', title: 'Padel', status: 'live', template: 'racketSport' },
+        { id: 'badminton', title: 'Badminton', status: 'live', template: 'racketSport' },
+        { id: 'squash', title: 'Squash', status: 'live', template: 'racketSport' },
         { id: 'racquetball', title: 'Racquetball', status: 'soon' },
-        { id: 'table-tennis', title: 'Table Tennis', status: 'soon' }
+        { id: 'table-tennis', title: 'Table Tennis', status: 'live', template: 'racketSport' }
       ]
     },
     {
@@ -249,9 +289,9 @@
         { id: 'elliptical', title: 'Elliptical', status: 'live', template: 'gpsEndurance' },
         { id: 'indoor-row', title: 'Indoor Row', status: 'live', template: 'gpsEndurance' },
         { id: 'cardio', title: 'Cardio', status: 'soon' },
-        { id: 'pilates', title: 'Pilates', status: 'soon' },
-        { id: 'stair-stepper', title: 'Stair Stepper', status: 'soon' },
-        { id: 'jump-rope', title: 'Jump Rope', status: 'soon' },
+        { id: 'pilates', title: 'Pilates', status: 'live', template: 'mindRecovery' },
+        { id: 'stair-stepper', title: 'Stair Stepper', status: 'live', template: 'combatInterval' },
+        { id: 'jump-rope', title: 'Jump Rope', status: 'live', template: 'combatInterval' },
         { id: 'mobility', title: 'Mobility', status: 'soon' }
       ]
     },
@@ -259,8 +299,8 @@
       category: 'Other',
       sports: [
         { id: 'triathlon', title: 'Triathlon', status: 'soon' },
-        { id: 'meditation', title: 'Meditation', status: 'soon' },
-        { id: 'breathwork', title: 'Breathwork', status: 'soon' }
+        { id: 'meditation', title: 'Meditation', status: 'live', template: 'mindRecovery' },
+        { id: 'breathwork', title: 'Breathwork', status: 'live', template: 'mindRecovery' }
       ]
     }
   ];
