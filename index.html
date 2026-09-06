@@ -92,6 +92,11 @@
     <div id="tab-strip" class="tab-strip"></div>
     <button id="add-btn" class="bar-add" type="button" aria-label="Add a tool">+</button>
   </nav>
+
+  <div id="canvas-hint" class="canvas-hint" hidden>
+    Tap here to add your first tool
+    <span class="canvas-hint__arrow"></span>
+  </div>
 </div>
 
 <div id="picker" class="overlay" hidden>
@@ -134,6 +139,45 @@
   </div>
 </div>
 
+<div id="onboarding" class="overlay overlay--onboarding" hidden>
+  <div class="onboarding-panel">
+    <button id="onboarding-skip" type="button" class="onboarding-skip">Skip</button>
+    <div class="onboarding-track">
+      <div id="onboarding-track-inner" class="onboarding-track-inner">
+        <div class="onboarding-slide">
+          <div class="onboarding-slide__icon" aria-hidden="true">🎨</div>
+          <h2 class="onboarding-slide__title">Start With a Blank Canvas</h2>
+          <p class="onboarding-slide__text">Fitness Canvas doesn&#8217;t force any tools on you. It starts empty and becomes whatever fitness tools you actually want to use.</p>
+        </div>
+        <div class="onboarding-slide">
+          <div class="bar-add onboarding-slide__mock-btn" aria-hidden="true">+</div>
+          <h2 class="onboarding-slide__title">Add Tools With +</h2>
+          <p class="onboarding-slide__text">Tap the + button to add a tool. Each one gets its own tab in the bottom bar &#8212; tap a tab to open it full-screen, or press and hold a tab to remove it.</p>
+        </div>
+        <div class="onboarding-slide">
+          <div class="onboarding-slide__icon" aria-hidden="true">👤</div>
+          <h2 class="onboarding-slide__title">Your Account Lives Up Top</h2>
+          <p class="onboarding-slide__text">The bar at the very top is separate from your tools &#8212; that&#8217;s where your profile and account-related things live.</p>
+        </div>
+        <div class="onboarding-slide">
+          <div class="onboarding-slide__icon" aria-hidden="true">🚀</div>
+          <h2 class="onboarding-slide__title">Ready to Build Your Canvas?</h2>
+          <p class="onboarding-slide__text">Add your first tool whenever you&#8217;re ready. This app is yours to shape.</p>
+        </div>
+      </div>
+    </div>
+    <div class="onboarding-dots">
+      <span class="onboarding-dot onboarding-dot--active"></span>
+      <span class="onboarding-dot"></span>
+      <span class="onboarding-dot"></span>
+      <span class="onboarding-dot"></span>
+    </div>
+    <div class="onboarding-actions">
+      <button id="onboarding-next" type="button" class="btn-primary">Next</button>
+    </div>
+  </div>
+</div>
+
 <script src="js/storage.js"></script>
 <script src="js/activity-log.js"></script>
 <script src="js/catalog.js"></script>
@@ -148,6 +192,8 @@
 <script src="js/account-tabstrip.js"></script>
 <script src="js/picker.js"></script>
 <script src="js/account-picker.js"></script>
+<script src="js/onboarding.js"></script>
+<script src="js/canvas-hint.js"></script>
 <script src="modules/workout-logger/module.js"></script>
 <script src="modules/program-builder/module.js"></script>
 <script src="modules/meal-tracker/module.js"></script>

@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
     AccountPicker.open();
   });
 
+  Onboarding.maybeShow();
+
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(function () {});
   }
