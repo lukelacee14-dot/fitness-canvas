@@ -621,10 +621,17 @@
           '<div class="field-row"><label>Notes<input type="text" name="notes" placeholder="optional"></label></div>' +
           '<button type="submit" class="btn-primary">Add Set</button>' +
         '</form>' +
+        '<div class="pb-rest-shortcut">' +
+          '<button type="button" class="btn-secondary pb-rest-timer-btn">Start Rest Timer</button>' +
+        '</div>' +
         '<div class="wl-log"></div>';
 
       var form = target.querySelector('.wl-form');
       var logEl = target.querySelector('.wl-log');
+
+      target.querySelector('.pb-rest-timer-btn').addEventListener('click', function () {
+        RestTimer.open();
+      });
 
       if (planned) {
         target.querySelectorAll('.pb-planned__log-btn').forEach(function (btn) {

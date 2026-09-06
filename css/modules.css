@@ -1254,3 +1254,71 @@
   text-align: center;
   margin-top: 1rem;
 }
+
+/* Rest Timer (standalone tool landing screen) */
+.rt-intro {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0 0 1rem;
+}
+
+/* Strength Training rest-timer shortcut */
+.pb-rest-shortcut {
+  margin: 0 0 1rem;
+}
+
+.pb-rest-shortcut .btn-secondary {
+  width: 100%;
+}
+
+/* Exercise Library & Muscle Guide */
+.el-search {
+  width: 100%;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  margin-bottom: 0.6rem;
+}
+
+.el-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.85rem;
+}
+
+.el-filters select {
+  flex: 1 1 auto;
+  min-width: 8rem;
+  font-size: 0.85rem;
+  padding: 0.45rem 0.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+}
+
+/* Recipe Builder */
+.rb-url-note {
+  margin-bottom: 1rem;
+}
+
+.rb-section-title {
+  margin: 1rem 0 0.5rem;
+  font-size: 0.9rem;
+}
+
+.rb-totals {
+  margin-top: 0.75rem;
+}
+
+.rb-save-status {
+  font-size: 0.8rem;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 0.5rem;
+}

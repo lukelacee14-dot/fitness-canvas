@@ -4,17 +4,17 @@ var CATALOG = [
     tools: [
       { id: 'workout-logger', title: 'Workout Logger', description: 'Log workouts across 90+ sports, from strength training to team sports.', status: 'live' },
       { id: 'program-builder', title: 'Program Builder / Digital PT', description: 'Pick a muscle group or goal and get suggested exercises.', status: 'live' },
-      { id: 'exercise-library', title: 'Exercise Library & Muscle Guide', description: 'Browse exercises by muscle group with how-to guidance.', status: 'soon' },
-      { id: 'rest-timer', title: 'Rest Timer', description: 'Countdown between sets so you know when to go again.', status: 'soon' },
-      { id: 'pr-tracker', title: 'PR Tracker', description: 'Track personal records for your key lifts over time.', status: 'soon' }
+      { id: 'exercise-library', title: 'Exercise Library & Muscle Guide', description: 'Search and filter the same exercise database Program Builder uses, by muscle group, equipment, or difficulty.', status: 'live' },
+      { id: 'rest-timer', title: 'Rest Timer', description: 'Countdown between sets so you know when to go again.', status: 'live' },
+      { id: 'pr-tracker', title: 'PR Tracker', description: 'A quick-glance list of your personal records, pulled from the same data as Progress & Analytics.', status: 'live' }
     ]
   },
   {
     category: 'Nutrition',
     tools: [
       { id: 'meal-tracker', title: 'Meal Tracker', description: 'Log meals and see daily calorie and macro totals.', status: 'live' },
-      { id: 'water-tracker', title: 'Water Tracker', description: 'Log water intake and track progress toward a daily goal.', status: 'soon' },
-      { id: 'recipe-importer', title: 'Recipe Importer', description: 'Import a recipe and break it down into macros per serving.', status: 'soon' }
+      { id: 'water-tracker', title: 'Water Tracker', description: 'Log water intake and track progress toward a daily goal — same data as Meal Tracker\'s water widget.', status: 'live' },
+      { id: 'recipe-builder', title: 'Recipe Builder', description: 'Build a recipe from ingredients in the food database and save it as a reusable meal.', status: 'live' }
     ]
   },
   {

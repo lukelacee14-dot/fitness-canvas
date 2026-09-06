@@ -629,3 +629,93 @@ body {
   flex: 1;
   margin-top: 0;
 }
+
+/* Rest Timer overlay */
+.overlay--rest-timer {
+  background: var(--bg);
+  align-items: stretch;
+  z-index: 90;
+}
+
+.rest-timer-panel {
+  width: 100%;
+  max-width: 30rem;
+  margin: 0 auto;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  padding: calc(var(--safe-top) + 0.25rem) 1.25rem calc(var(--safe-bottom) + 1rem);
+}
+
+.rt-setup,
+.rt-count,
+.rt-done {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.rt-presets {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.rt-preset-btn {
+  padding: 0.6rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.rt-preset-btn:active {
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border-color: var(--accent);
+}
+
+.rt-setup .field-row {
+  width: 100%;
+  max-width: 16rem;
+}
+
+.rt-setup .btn-primary {
+  width: 100%;
+  max-width: 16rem;
+}
+
+.rt-count__display {
+  font-size: 4rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.rt-count .btn-secondary {
+  width: 100%;
+  max-width: 16rem;
+}
+
+.rt-done__text {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.rt-done__actions {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.rt-done__actions .btn-secondary,
+.rt-done__actions .btn-primary {
+  min-width: 8rem;
+  margin-top: 0;
+}

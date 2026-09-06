@@ -16,9 +16,9 @@ Running reference of every module in Fitness Canvas's scope. Update this file wh
 - **Program Builder / Digital PT — My Programs** — Save generated programs by name, view their day-by-day breakdown, and delete them. — Live
 - **Program Builder / Digital PT — Strength Training Hand-off** — Starting a saved program (only one active at a time) makes its exercises for the current day appear as a planned session at the top of Workout Logger's Strength Training tab, with a Log button per exercise to pre-fill sets/reps for logging actual weight. — Live
 - **Workout Logger — Live GPS Tracking** — For the outdoor GPS-relevant sports (Run, Trail Run, Road Bike, Mountain Bike, Gravel Bike, eBike, Bike Commute, Hike, Walk, Horseback Riding): a "Start Live Tracking" button opens a full-screen session using the Geolocation API's watchPosition, calculating live distance (Haversine formula), duration, and current pace/speed, with the route drawn live on a Leaflet/OpenStreetMap map, Pause/Resume, Wake Lock to keep the screen on, and a graceful fallback to manual entry if location permission is denied. Finishing pre-fills the sport's existing Duration/Distance/Avg Pace-Speed fields for review before saving, exactly like manual entry, and stores the route with the entry so it can be viewed again later from that entry's history. Manual entry remains fully available alongside it for all of these sports, and indoor sports on the same GPS Endurance template (Treadmill, Indoor Bike, Elliptical, Indoor Row) intentionally do not get this button. — Live
-- **Exercise Library & Muscle Guide** — Browse exercises by muscle group with how-to guidance. — Coming Soon
-- **Rest Timer** — Countdown between sets so you know when to go again. — Coming Soon
-- **PR Tracker** — Track personal records for your key lifts over time. — Coming Soon
+- **Exercise Library & Muscle Guide** — Standalone browsable/searchable library reusing the same ~60-exercise database as Program Builder (shared via js/exercise-database.js, no duplicate copy) — search by name, filter by muscle group, equipment, or difficulty, for looking up an exercise without going through Program Builder's goal-setting flow. — Live
+- **Rest Timer** — Simple countdown (presets or custom duration) with a sound, vibration, and visual alert when it finishes. Shares its implementation (js/rest-timer.js) with a contextual "Start Rest Timer" shortcut inside Workout Logger's Strength Training tab, reachable right after logging a set without leaving the screen. — Live
+- **PR Tracker** — A focused, quick-glance PR list (heaviest lifts per exercise, fastest/longest per sport) — no trend charts. Reuses the exact same personal-records computation as Progress & Analytics (shared via js/pr-computation.js, no duplicate logic). — Live
 
 ### Workout Logger — Sports
 
@@ -131,8 +131,8 @@ This batch moved 28 sports from Coming Soon to Live, each mapped onto an existin
 - **Meal Tracker — Saved Meals** — Create, edit, and delete reusable named meal templates (full nutrition fields) to log repeatedly without re-typing. — Live
 - **Meal Tracker — Water Intake** — Increment/decrement water for the day (cups or mL) with an optional daily goal. — Live
 - **Meal Tracker — Weekly Summary** — 7-day table of daily calorie/macro totals to spot trends at a glance. — Live
-- **Water Tracker** — Standalone water-tracking tool (separate from Meal Tracker's built-in water widget). — Coming Soon
-- **Recipe Importer** — Import a recipe and break it down into macros per serving. — Coming Soon
+- **Water Tracker** — Standalone tab for just water tracking, without the rest of Meal Tracker. Reads and writes the exact same water data as Meal Tracker's built-in water widget (both operate directly on module:meal-tracker — no separate copy), so incrementing water in either place shows up in both. — Live
+- **Recipe Builder** — Build a recipe by searching and adding multiple ingredients (with quantities) from the existing nutrition database; calories/macros sum automatically across all added ingredients. Saves the finished recipe into Meal Tracker's existing Saved Meals list, so it logs the same way as any other saved meal. Replaces the earlier "Recipe Importer" placeholder — true URL-based recipe auto-import remains **Coming Soon**, pending the backend/accounts step (point 10), since fetching an external page isn't something that can run client-side. — Live
 
 ## Body & Recovery
 - **Body Measurements** — Log weight, body fat %, and circumference measurements (waist, chest, hips, arms, thighs, neck), with a date-grouped history and a per-metric trend chart. — Live
