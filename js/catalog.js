@@ -35,8 +35,10 @@ var CATALOG = [
   {
     category: 'Motivation',
     tools: [
-      { id: 'streaks', title: 'Streaks', description: 'Track consecutive days of hitting your fitness goals.', status: 'soon' },
-      { id: 'activity-feed', title: 'Activity Feed', description: "See a timeline of everything you've logged recently.", status: 'soon' }
+      { id: 'streaks', title: 'Streaks', description: 'Track your current and longest streak of consecutive days logging any activity.', status: 'live' },
+      { id: 'activity-feed', title: 'Activity Feed', description: "Post updates about your progress and react with kudos. Solo preview until accounts exist.", status: 'live' },
+      { id: 'leaderboards', title: 'Leaderboards', description: 'Your own top-5 personal bests per sport, leaderboard-style. Solo preview until accounts exist.', status: 'live' },
+      { id: 'achievements', title: 'Achievements', description: 'Earn badges computed from your real logged data across the app.', status: 'live' }
     ]
   }
 ];

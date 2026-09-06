@@ -972,3 +972,217 @@
   color: var(--muted);
   margin-top: 0.15rem;
 }
+
+/* Streaks (shared "hero" stat banner also used by Activity Feed and Achievements) */
+.sk-hero {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.sk-hero--compact {
+  margin-bottom: 1rem;
+}
+
+.sk-hero__item {
+  flex: 1;
+  background: var(--bg);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.sk-hero__value {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.sk-hero__label {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.sk-grid-title {
+  margin: 0 0 0.6rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+.sk-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.35rem;
+}
+
+.sk-day {
+  aspect-ratio: 1;
+  border-radius: 4px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+}
+
+.sk-day--active {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* Activity Feed */
+.fd-solo-note {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-align: center;
+  margin: 0 0 1rem;
+}
+
+.af-post {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.af-post__header {
+  margin-bottom: 0.3rem;
+}
+
+.af-post__date {
+  font-size: 0.72rem;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.af-post__text {
+  margin: 0 0 0.4rem;
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+}
+
+.af-post__tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  color: var(--accent);
+  background: var(--bg);
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.af-post__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.4rem;
+}
+
+.af-kudos-btn {
+  border: none;
+  background: var(--bg);
+  color: var(--text);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.35rem 0.7rem;
+  border-radius: 999px;
+}
+
+/* Achievements */
+.ac-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.ac-badge {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 0.7rem;
+  text-align: center;
+}
+
+.ac-badge--locked {
+  opacity: 0.45;
+}
+
+.ac-badge__icon {
+  font-size: 1.6rem;
+  margin-bottom: 0.4rem;
+}
+
+.ac-badge__title {
+  font-weight: 700;
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.ac-badge__desc {
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+.ac-badge__date {
+  font-size: 0.68rem;
+  color: var(--accent);
+  margin-top: 0.35rem;
+  font-weight: 600;
+}
+
+/* Leaderboards */
+.lb-solo-note {
+  font-size: 0.72rem;
+  color: var(--muted);
+  text-align: center;
+  margin: 0 0 1rem;
+}
+
+.lb-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.75rem;
+  margin-bottom: 0.85rem;
+}
+
+.lb-card__title {
+  margin: 0 0 0.15rem;
+  font-size: 0.95rem;
+}
+
+.lb-card__subtitle {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+}
+
+.lb-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.lb-row:last-child {
+  border-bottom: none;
+}
+
+.lb-rank {
+  font-weight: 700;
+  color: var(--accent);
+  width: 1.75rem;
+  flex: 0 0 auto;
+}
+
+.lb-row__name {
+  flex: 1;
+  font-size: 0.85rem;
+}
+
+.lb-row__value {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
