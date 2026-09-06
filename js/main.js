@@ -13,4 +13,12 @@ document.addEventListener('DOMContentLoaded', function () {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js').catch(function () {});
   }
+
+  var splash = document.getElementById('app-splash');
+  if (splash) {
+    requestAnimationFrame(function () {
+      splash.classList.add('app-splash--hidden');
+      setTimeout(function () { splash.remove(); }, 300);
+    });
+  }
 });
