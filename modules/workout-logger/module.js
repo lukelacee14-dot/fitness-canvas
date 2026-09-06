@@ -175,8 +175,8 @@
     {
       category: 'Running',
       sports: [
-        { id: 'run', title: 'Run', status: 'live', template: 'gpsEndurance' },
-        { id: 'trail-run', title: 'Trail Run', status: 'live', template: 'gpsEndurance' },
+        { id: 'run', title: 'Run', status: 'live', template: 'gpsEndurance', liveTracking: true, paceStyle: 'pace' },
+        { id: 'trail-run', title: 'Trail Run', status: 'live', template: 'gpsEndurance', liveTracking: true, paceStyle: 'pace' },
         { id: 'treadmill', title: 'Treadmill', status: 'live', template: 'gpsEndurance' },
         { id: 'track-run', title: 'Track Run', status: 'live', template: 'gpsEndurance' },
         { id: 'ultra-run', title: 'Ultra Run', status: 'live', template: 'gpsEndurance' },
@@ -188,15 +188,15 @@
     {
       category: 'Cycling',
       sports: [
-        { id: 'road-bike', title: 'Road Bike', status: 'live', template: 'gpsEndurance' },
-        { id: 'mountain-bike', title: 'Mountain Bike', status: 'live', template: 'gpsEndurance' },
+        { id: 'road-bike', title: 'Road Bike', status: 'live', template: 'gpsEndurance', liveTracking: true, paceStyle: 'speed' },
+        { id: 'mountain-bike', title: 'Mountain Bike', status: 'live', template: 'gpsEndurance', liveTracking: true, paceStyle: 'speed' },
         { id: 'indoor-bike', title: 'Indoor Bike', status: 'live', template: 'gpsEndurance' },
-        { id: 'gravel-bike', title: 'Gravel Bike', status: 'live', template: 'gpsEndurance' },
-        { id: 'ebike', title: 'eBike', status: 'live', template: 'gpsEndurance' },
+        { id: 'gravel-bike', title: 'Gravel Bike', status: 'live', template: 'gpsEndurance', liveTracking: true, paceStyle: 'speed' },
+        { id: 'ebike', title: 'eBike', status: 'live', template: 'gpsEndurance', liveTracking: true, paceStyle: 'speed' },
         { id: 'emtb', title: 'eMTB', status: 'soon' },
         { id: 'bmx', title: 'BMX', status: 'soon' },
         { id: 'cyclocross', title: 'Cyclocross', status: 'soon' },
-        { id: 'bike-commute', title: 'Bike Commute', status: 'live', template: 'gpsEndurance' },
+        { id: 'bike-commute', title: 'Bike Commute', status: 'live', template: 'gpsEndurance', liveTracking: true, paceStyle: 'speed' },
         { id: 'bike-tour', title: 'Bike Tour', status: 'soon' }
       ]
     },
@@ -210,10 +210,10 @@
     {
       category: 'Outdoor',
       sports: [
-        { id: 'hike', title: 'Hike', status: 'live', template: 'gpsEndurance' },
-        { id: 'walk', title: 'Walk', status: 'live', template: 'gpsEndurance' },
+        { id: 'hike', title: 'Hike', status: 'live', template: 'gpsEndurance', liveTracking: true, paceStyle: 'pace' },
+        { id: 'walk', title: 'Walk', status: 'live', template: 'gpsEndurance', liveTracking: true, paceStyle: 'pace' },
         { id: 'mountaineering', title: 'Mountaineering', status: 'soon' },
-        { id: 'horseback-riding', title: 'Horseback Riding', status: 'live', template: 'gpsEndurance' },
+        { id: 'horseback-riding', title: 'Horseback Riding', status: 'live', template: 'gpsEndurance', liveTracking: true, paceStyle: 'speed' },
         { id: 'golf', title: 'Golf', status: 'live', template: 'golf' },
         { id: 'fishing', title: 'Fishing', status: 'soon' },
         { id: 'hunting', title: 'Hunting', status: 'soon' },
@@ -730,12 +730,19 @@
       if (!data.entries[sportId]) data.entries[sportId] = [];
       var entries = data.entries[sportId];
       var fields = templateFields(def.template, def.extra ? EXTRA_FIELDS[def.extra] : null);
+      var pendingRoute = null;
 
       var formFieldsHtml = fields.map(function (f) {
         return '<div class="field-row"><label>' + f.label + fieldInputHtml(f) + '</label></div>';
       }).join('');
 
+      var trackingHtml = def.liveTracking
+        ? '<button type="button" class="btn-primary wl-track-btn">Start Live Tracking</button>' +
+          '<p class="wl-track-divider">or log manually below</p>'
+        : '';
+
       target.innerHTML =
+        trackingHtml +
         '<form class="gl-form">' +
           '<div class="field-row"><label>Date<input type="date" name="date" value="' + todayStr() + '" required></label></div>' +
           formFieldsHtml +
@@ -745,6 +752,23 @@
 
       var form = target.querySelector('.gl-form');
       var logEl = target.querySelector('.gl-log');
+
+      if (def.liveTracking) {
+        target.querySelector('.wl-track-btn').addEventListener('click', function () {
+          GpsTracker.start({
+            sportTitle: def.title,
+            paceStyle: def.paceStyle,
+            onFinish: function (result) {
+              pendingRoute = result.route;
+              if (form.duration) form.duration.value = result.durationText;
+              if (form.distance) form.distance.value = result.distanceMiles.toFixed(2);
+              if (form.avgPaceSpeed) form.avgPaceSpeed.value = result.avgPaceSpeedText;
+              form.querySelector('[name="date"]').value = todayStr();
+              form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+          });
+        });
+      }
 
       function render() {
         logEl.innerHTML = '';
@@ -785,6 +809,18 @@
               return '<td>' + (val !== undefined && val !== null && val !== '' ? escapeHtml(String(val)) : '') + '</td>';
             }).join('') + '<td></td>';
 
+            if (entry.route && entry.route.length > 1) {
+              var routeBtn = document.createElement('button');
+              routeBtn.type = 'button';
+              routeBtn.className = 'row-route-view';
+              routeBtn.setAttribute('aria-label', 'View route');
+              routeBtn.textContent = '🗺️';
+              routeBtn.addEventListener('click', function () {
+                GpsTracker.viewRoute({ sportTitle: def.title, route: entry.route });
+              });
+              tr.lastElementChild.appendChild(routeBtn);
+            }
+
             var delBtn = document.createElement('button');
             delBtn.type = 'button';
             delBtn.className = 'row-delete';
@@ -819,6 +855,11 @@
           if (raw === '') return;
           entry[f.key] = f.type === 'number' ? Number(raw) : raw;
         });
+
+        if (pendingRoute) {
+          entry.route = pendingRoute;
+          pendingRoute = null;
+        }
 
         entries.push(entry);
         save();

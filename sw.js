@@ -1,7 +1,7 @@
 // Bump CACHE_VERSION whenever any precached file changes so clients pick up
 // the new deploy instead of being stuck on a stale cache — activate deletes
 // every cache whose name doesn't match the current version.
-var CACHE_VERSION = 'v2';
+var CACHE_VERSION = 'v3';
 var CACHE_NAME = 'fitness-canvas-' + CACHE_VERSION;
 
 // Keep this in sync with index.html's <script>/<link> tags when adding a
@@ -28,6 +28,7 @@ var PRECACHE_ASSETS = [
   'js/account-picker.js',
   'js/onboarding.js',
   'js/canvas-hint.js',
+  'js/gps-tracker.js',
   'js/main.js',
   'modules/workout-logger/module.js',
   'modules/program-builder/module.js',

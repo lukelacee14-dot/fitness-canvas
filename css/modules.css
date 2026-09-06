@@ -55,6 +55,24 @@
   padding: 0.3rem;
 }
 
+.row-route-view {
+  border: none;
+  background: none;
+  font-size: 0.9rem;
+  padding: 0.3rem;
+}
+
+.wl-track-btn {
+  margin-bottom: 0.25rem;
+}
+
+.wl-track-divider {
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin: 0.5rem 0 1rem;
+}
+
 /* Workout logger */
 .sport-bar {
   display: flex;
