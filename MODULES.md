@@ -5,7 +5,7 @@ Running reference of every module in Fitness Canvas's scope. Update this file wh
 ## Account Bar
 - **Personal Profile** — Name, age, and profile picture (uploaded image is compressed and stored as base64 in localStorage); edit from the profile screen. — Live
 - **Search People** — Find and connect with other users. — Coming Soon
-- **Sport Info Lookup** — Look up info for a sport. — Coming Soon
+- **Sport Info Lookup** — Searchable, categorized reference (same categories as Workout Logger) covering the full ~90-sport catalog regardless of live/logging status: overview, primary muscles/energy systems, training approaches, and equipment for each sport. Sports that are LIVE for logging under Workout Logger show a "Log this sport" shortcut that jumps straight to that sport's tab there. — Live
 
 ## Training
 - **Workout Logger** — Multi-sport activity logger with its own internal sport tabs; a data-driven template system so each sport logs the fields that make sense for it. — Live

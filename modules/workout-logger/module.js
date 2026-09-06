@@ -312,6 +312,14 @@
 
     if (migrated) save();
 
+    var jumpSportId = Storage.get('nav:jump-to-sport', null);
+    if (jumpSportId && SPORT_INDEX[jumpSportId] && SPORT_INDEX[jumpSportId].status === 'live') {
+      Storage.remove('nav:jump-to-sport');
+      if (data.sports.indexOf(jumpSportId) === -1) data.sports.push(jumpSportId);
+      data.currentSport = jumpSportId;
+      save();
+    }
+
     container.innerHTML =
       '<div class="sport-bar">' +
         '<div class="sport-strip"></div>' +
