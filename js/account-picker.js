@@ -10,7 +10,9 @@ var AccountPicker = (function () {
 
     var text = document.createElement('div');
     text.className = 'picker-tool__text';
-    text.innerHTML = '<span class="picker-tool__title">' + item.title + '</span>';
+    text.innerHTML =
+      '<span class="picker-tool__title">' + item.title + '</span>' +
+      (item.description ? '<span class="picker-tool__desc">' + item.description + '</span>' : '');
     row.appendChild(text);
 
     if (item.status === 'live') {
