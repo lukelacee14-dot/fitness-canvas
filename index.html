@@ -19,7 +19,7 @@
      flash of blank white between tapping the home-screen icon and the
      app being ready. Colors are hardcoded to match manifest.json and
      css/canvas.css's :root since this must render before canvas.css does. */
-  html, body { margin: 0; padding: 0; background: #f0f0f2; }
+  html, body { margin: 0; padding: 0; background: #ffffff; }
   #app-splash {
     position: fixed;
     inset: 0;
@@ -29,7 +29,7 @@
     align-items: center;
     justify-content: center;
     gap: 0.85rem;
-    background: #f0f0f2;
+    background: #ffffff;
     transition: opacity 0.25s ease;
   }
   #app-splash.app-splash--hidden {
@@ -41,7 +41,7 @@
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-size: 1rem;
     font-weight: 700;
-    color: #1c1c1e;
+    color: #111111;
   }
   #app-splash .app-splash__dots { display: flex; gap: 0.3rem; }
   #app-splash .app-splash__dot {

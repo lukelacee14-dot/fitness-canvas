@@ -1,7 +1,7 @@
 // Bump CACHE_VERSION whenever any precached file changes so clients pick up
 // the new deploy instead of being stuck on a stale cache — activate deletes
 // every cache whose name doesn't match the current version.
-var CACHE_VERSION = 'v4';
+var CACHE_VERSION = 'v5';
 var CACHE_NAME = 'fitness-canvas-' + CACHE_VERSION;
 
 // Keep this in sync with index.html's <script>/<link> tags when adding a
