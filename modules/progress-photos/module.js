@@ -89,10 +89,19 @@
         e.preventDefault();
         if (!pendingPhoto) return;
         var fd = new FormData(form);
-        data.entries.push({ id: uid(), date: fd.get('date') || todayStr(), photo: pendingPhoto });
-        save();
-        pendingPhoto = null;
-        render();
+        var dateVal = fd.get('date') || todayStr();
+        var photoToSave = pendingPhoto;
+
+        SaveConfirm.show({
+          summary: 'Logged a new progress photo',
+          taggedLabel: 'Progress Photo — ' + formatDate(dateVal),
+          onSave: function () {
+            data.entries.push({ id: uid(), date: dateVal, photo: photoToSave });
+            save();
+            pendingPhoto = null;
+            render();
+          }
+        });
       });
 
       renderGallery();

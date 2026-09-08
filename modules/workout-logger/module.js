@@ -30,6 +30,38 @@
     return div.innerHTML;
   }
 
+  // ---- Save-confirmation summary builders --------------------------------
+
+  function buildStrengthSummary(exercise, setsVal, repsVal, weightVal) {
+    var stats = [];
+    if (setsVal) stats.push(setsVal + ' sets');
+    if (repsVal) stats.push(repsVal + ' reps');
+    if (weightVal) stats.push(weightVal + ' lbs/kg');
+    return 'Logged ' + exercise + (stats.length ? ' — ' + stats.join(' × ') : '');
+  }
+
+  function buildEntrySummary(title, entry, fields) {
+    var lead = entry.distance !== undefined
+      ? 'Completed a ' + entry.distance + ' ' + title
+      : 'Completed ' + title;
+
+    var details = [];
+    if (entry.duration) details.push(entry.duration);
+    if (entry.avgPaceSpeed) details.push('avg pace ' + entry.avgPaceSpeed);
+
+    if (details.length === 0) {
+      fields.some(function (f) {
+        if (f.key === 'distance' || f.key === 'notes') return false;
+        var v = entry[f.key];
+        if (v === undefined || v === null || v === '') return false;
+        details.push(f.label + ' ' + v);
+        return details.length >= 2;
+      });
+    }
+
+    return lead + (details.length ? ' — ' + details.join(', ') : '');
+  }
+
   // ---- Program Builder hand-off ------------------------------------------
 
   function getTodaysProgramDay() {
@@ -712,22 +744,34 @@
         var exercise = (fd.get('exercise') || '').toString().trim();
         if (!exercise) return;
 
-        entries.push({
-          id: uid(),
-          date: fd.get('date') || todayStr(),
-          exercise: exercise,
-          sets: fd.get('sets') ? Number(fd.get('sets')) : null,
-          reps: fd.get('reps') ? Number(fd.get('reps')) : null,
-          weight: fd.get('weight') ? Number(fd.get('weight')) : null,
-          notes: (fd.get('notes') || '').toString().trim()
-        });
-        data.entries['strength-training'] = entries;
+        var dateVal = fd.get('date') || todayStr();
+        var setsVal = fd.get('sets') ? Number(fd.get('sets')) : null;
+        var repsVal = fd.get('reps') ? Number(fd.get('reps')) : null;
+        var weightVal = fd.get('weight') ? Number(fd.get('weight')) : null;
+        var notesVal = (fd.get('notes') || '').toString().trim();
 
-        save();
-        render();
-        form.reset();
-        form.querySelector('[name="date"]').value = todayStr();
-        form.querySelector('[name="exercise"]').focus();
+        SaveConfirm.show({
+          summary: buildStrengthSummary(exercise, setsVal, repsVal, weightVal),
+          taggedLabel: exercise + ' — ' + formatDate(dateVal),
+          onSave: function () {
+            entries.push({
+              id: uid(),
+              date: dateVal,
+              exercise: exercise,
+              sets: setsVal,
+              reps: repsVal,
+              weight: weightVal,
+              notes: notesVal
+            });
+            data.entries['strength-training'] = entries;
+
+            save();
+            render();
+            form.reset();
+            form.querySelector('[name="date"]').value = todayStr();
+            form.querySelector('[name="exercise"]').focus();
+          }
+        });
       });
 
       render();
@@ -868,11 +912,17 @@
           pendingRoute = null;
         }
 
-        entries.push(entry);
-        save();
-        render();
-        form.reset();
-        form.querySelector('[name="date"]').value = todayStr();
+        SaveConfirm.show({
+          summary: buildEntrySummary(def.title, entry, fields),
+          taggedLabel: def.title + ' — ' + formatDate(entry.date),
+          onSave: function () {
+            entries.push(entry);
+            save();
+            render();
+            form.reset();
+            form.querySelector('[name="date"]').value = todayStr();
+          }
+        });
       });
 
       render();

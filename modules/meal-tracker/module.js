@@ -356,10 +356,18 @@
     }
 
     function pushEntry(section, entry) {
-      var day = getDay(viewDate);
-      day[section].push(entry);
-      save();
-      renderDynamic();
+      var summary = 'Logged ' + entry.name + (entry.calories ? ' — ' + entry.calories + ' kcal' : '');
+
+      SaveConfirm.show({
+        summary: summary,
+        taggedLabel: entry.name + ' — ' + formatDate(viewDate),
+        onSave: function () {
+          var day = getDay(viewDate);
+          day[section].push(entry);
+          save();
+          renderDynamic();
+        }
+      });
     }
 
     function openSavedMealForm(existingMeal) {

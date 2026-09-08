@@ -146,11 +146,22 @@
       var wakeTime = (fd.get('wakeTime') || '').toString().trim();
       if (wakeTime) entry.wakeTime = wakeTime;
 
-      data.entries.push(entry);
-      save();
-      renderDynamic();
-      form.reset();
-      form.querySelector('[name="date"]').value = todayStr();
+      var summaryParts = [];
+      if (entry.duration !== undefined) summaryParts.push(entry.duration + ' hrs');
+      if (entry.quality) summaryParts.push(entry.quality);
+      var summary = 'Logged Sleep' + (summaryParts.length ? ' — ' + summaryParts.join(', ') : '');
+
+      SaveConfirm.show({
+        summary: summary,
+        taggedLabel: 'Sleep — ' + formatDate(entry.date),
+        onSave: function () {
+          data.entries.push(entry);
+          save();
+          renderDynamic();
+          form.reset();
+          form.querySelector('[name="date"]').value = todayStr();
+        }
+      });
     });
 
     renderDynamic();

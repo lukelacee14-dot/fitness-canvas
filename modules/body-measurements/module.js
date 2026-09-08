@@ -86,11 +86,23 @@
           var raw = (fd.get(f.key) || '').toString().trim();
           if (raw !== '') entry[f.key] = Number(raw);
         });
-        data.entries.push(entry);
-        save();
-        renderLogList();
-        form.reset();
-        form.querySelector('[name="date"]').value = todayStr();
+
+        var summaryParts = FIELDS
+          .filter(function (f) { return entry[f.key] !== undefined; })
+          .map(function (f) { return shortLabel(f.label) + ' ' + entry[f.key]; });
+        var summary = 'Logged Body Measurement' + (summaryParts.length ? ' — ' + summaryParts.join(', ') : '');
+
+        SaveConfirm.show({
+          summary: summary,
+          taggedLabel: 'Body Measurement — ' + formatDate(entry.date),
+          onSave: function () {
+            data.entries.push(entry);
+            save();
+            renderLogList();
+            form.reset();
+            form.querySelector('[name="date"]').value = todayStr();
+          }
+        });
       });
 
       renderLogList();

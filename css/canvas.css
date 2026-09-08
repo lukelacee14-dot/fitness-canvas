@@ -729,3 +729,16 @@ body {
   min-width: 8rem;
   margin-top: 0;
 }
+
+/* Universal save confirmation sheet */
+.sc-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.sc-actions .btn-primary,
+.sc-actions .btn-secondary {
+  margin-top: 0;
+}

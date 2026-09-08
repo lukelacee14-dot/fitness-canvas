@@ -107,11 +107,22 @@
       var rpeRaw = (fd.get('rpe') || '').toString().trim();
       if (rpeRaw !== '') entry.rpe = Number(rpeRaw);
 
-      data.entries.push(entry);
-      save();
-      renderLog();
-      form.reset();
-      form.querySelector('[name="date"]').value = todayStr();
+      var summaryParts = [];
+      if (entry.soreness !== undefined) summaryParts.push('Soreness ' + entry.soreness + '/10');
+      if (entry.rpe !== undefined) summaryParts.push('RPE ' + entry.rpe + '/10');
+      var summary = 'Logged Soreness/RPE' + (summaryParts.length ? ' — ' + summaryParts.join(', ') : '');
+
+      SaveConfirm.show({
+        summary: summary,
+        taggedLabel: 'Soreness/RPE — ' + formatDate(entry.date),
+        onSave: function () {
+          data.entries.push(entry);
+          save();
+          renderLog();
+          form.reset();
+          form.querySelector('[name="date"]').value = todayStr();
+        }
+      });
     });
 
     renderLog();
