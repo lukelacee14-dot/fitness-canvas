@@ -12,6 +12,17 @@ This file is the single source of truth for visual design. Any UI work should ma
 - `splash-screen.png` — mobile splash/launch screen composition (1080×1920)
 - `palette-reference.png` — visual reference sheet for the core UI colors below
 
+## Tool icons (in `/icons/tools/`)
+Every top-level tool/module has a custom bold/geometric icon, replacing the old emoji placeholders. Each icon ships as two transparent PNGs:
+- `tool-icon-<name>-default.png` — Text Secondary (`#9B9CA8`) colored, used when the tool is not active/selected
+- `tool-icon-<name>-active.png` — Ember Accent (`#FF6B35`) colored, used when the tool is active/selected
+
+`<name>` values (matching MODULES.md's tool list): `workout-logger`, `program-builder`, `exercise-library`, `rest-timer`, `pr-tracker`, `meal-tracker`, `water-tracker`, `recipe-builder`, `body-measurements`, `progress-photos`, `sleep-tracker`, `soreness-rpe-log`, `progress-analytics`, `streaks`, `activity-feed`, `leaderboards`, `achievements`.
+
+`streaks` always renders in Ember Accent-toned flame colors regardless of state (it's a flame icon; the "active" variant is simply a solid brighter version) — every other icon strictly follows the default/active color rule above.
+
+These are raster PNGs, not recolorable SVGs/icon fonts, so swapping the accent color later means regenerating this set — it is not a live CSS variable.
+
 ## Color system (UI — use these everywhere in the app)
 | Role | Hex | Usage |
 |---|---|---|
@@ -48,7 +59,8 @@ Note: the wordmark artwork itself currently uses Arial Bold as a placeholder. If
 ## Iconography
 - Bold/geometric style — no thin decorative line icons.
 - Default icon color: Text Secondary (`#9B9CA8`). Switch to Ember Accent (`#FF6B35`) only for the active/selected state — the accent color should stay meaningful, not decorative.
-- Recommend a single consistent icon set app-wide (e.g. Phosphor Icons "bold" weight, or Lucide) rather than mixed sources.
+- The 17 top-level tool icons (see "Tool icons" above) are the app's custom icon set — use them instead of emoji or a third-party icon library for anything they cover.
+- For anything NOT covered by the tool icon set (e.g. generic UI chrome like a chevron, close button, or search icon), Phosphor Icons "bold" weight or Lucide is an acceptable stopgap until a matching custom icon exists.
 - No custom illustrations elsewhere in the app (icon-only direction) — the forge artwork (icon/wordmark/splash) is the one deliberate illustrative exception.
 
 ## Spacing
@@ -70,5 +82,6 @@ Not yet decided — open question for a future pass. Default to plain, encouragi
 
 ## Still to build (tracked separately in MODULES.md / IDEAS.md as they're done)
 - Small-size legibility pass on the icon (favicon / 16–32px contexts tend to blur out fine detail — test and simplify if needed)
+- Small-size legibility pass on the tool icon set too (they were designed at 240px; verify they still read cleanly at typical tab-bar/list sizes, ~24–32px)
 - Sport/activity icon set (50+ icons, same bold/geometric treatment as the app icon)
 - App store screenshots and Google Play feature graphic (once the UI reflects this system)

@@ -9,7 +9,9 @@ var TabStrip = (function () {
     btn.className = 'tab-btn' + (isActive ? ' tab-btn--active' : '');
     btn.dataset.moduleId = moduleId;
     btn.setAttribute('aria-label', def ? def.title : moduleId);
-    btn.innerHTML = '<span>' + (def ? def.icon : '•') + '</span>';
+    btn.innerHTML = def
+      ? '<img class="tab-btn__icon" src="icons/tools/tool-icon-' + moduleId + '-' + (isActive ? 'active' : 'default') + '.png" alt="">'
+      : '<span>•</span>';
 
     var timer = null;
     var longPressed = false;

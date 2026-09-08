@@ -45,7 +45,7 @@ var TabManager = (function () {
     var header = document.createElement('div');
     header.className = 'screen-header';
     header.innerHTML =
-      '<span class="screen-header__icon">' + (def.icon || '') + '</span>' +
+      '<img class="screen-header__icon" src="icons/tools/tool-icon-' + currentTab + '-active.png" alt="">' +
       '<span class="screen-header__title">' + def.title + '</span>';
     screenEl.appendChild(header);
 

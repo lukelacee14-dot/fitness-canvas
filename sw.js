@@ -1,7 +1,7 @@
 // Bump CACHE_VERSION whenever any precached file changes so clients pick up
 // the new deploy instead of being stuck on a stale cache — activate deletes
 // every cache whose name doesn't match the current version.
-var CACHE_VERSION = 'v7';
+var CACHE_VERSION = 'v8';
 var CACHE_NAME = 'fitness-canvas-' + CACHE_VERSION;
 
 // Keep this in sync with index.html's <script>/<link> tags when adding a
@@ -55,7 +55,41 @@ var PRECACHE_ASSETS = [
   'modules/leaderboards/module.js',
   'data/nutrition-database.json',
   'assets/brand/icon-1024.png',
-  'assets/brand/splash-screen.png'
+  'assets/brand/splash-screen.png',
+  'icons/tools/tool-icon-workout-logger-default.png',
+  'icons/tools/tool-icon-workout-logger-active.png',
+  'icons/tools/tool-icon-program-builder-default.png',
+  'icons/tools/tool-icon-program-builder-active.png',
+  'icons/tools/tool-icon-exercise-library-default.png',
+  'icons/tools/tool-icon-exercise-library-active.png',
+  'icons/tools/tool-icon-rest-timer-default.png',
+  'icons/tools/tool-icon-rest-timer-active.png',
+  'icons/tools/tool-icon-pr-tracker-default.png',
+  'icons/tools/tool-icon-pr-tracker-active.png',
+  'icons/tools/tool-icon-meal-tracker-default.png',
+  'icons/tools/tool-icon-meal-tracker-active.png',
+  'icons/tools/tool-icon-water-tracker-default.png',
+  'icons/tools/tool-icon-water-tracker-active.png',
+  'icons/tools/tool-icon-recipe-builder-default.png',
+  'icons/tools/tool-icon-recipe-builder-active.png',
+  'icons/tools/tool-icon-body-measurements-default.png',
+  'icons/tools/tool-icon-body-measurements-active.png',
+  'icons/tools/tool-icon-progress-photos-default.png',
+  'icons/tools/tool-icon-progress-photos-active.png',
+  'icons/tools/tool-icon-sleep-tracker-default.png',
+  'icons/tools/tool-icon-sleep-tracker-active.png',
+  'icons/tools/tool-icon-soreness-rpe-log-default.png',
+  'icons/tools/tool-icon-soreness-rpe-log-active.png',
+  'icons/tools/tool-icon-progress-analytics-default.png',
+  'icons/tools/tool-icon-progress-analytics-active.png',
+  'icons/tools/tool-icon-streaks-default.png',
+  'icons/tools/tool-icon-streaks-active.png',
+  'icons/tools/tool-icon-activity-feed-default.png',
+  'icons/tools/tool-icon-activity-feed-active.png',
+  'icons/tools/tool-icon-leaderboards-default.png',
+  'icons/tools/tool-icon-leaderboards-active.png',
+  'icons/tools/tool-icon-achievements-default.png',
+  'icons/tools/tool-icon-achievements-active.png'
 ];
 
 self.addEventListener('install', function (event) {
