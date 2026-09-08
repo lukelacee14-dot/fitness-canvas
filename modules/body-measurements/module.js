@@ -206,7 +206,7 @@
 
         chartWrap.innerHTML =
           '<svg viewBox="0 0 ' + w + ' ' + h + '" class="bm-chart" preserveAspectRatio="none">' +
-            '<polyline points="' + coords.join(' ') + '" fill="none" stroke="var(--color-accent-blue)" stroke-width="2"></polyline>' +
+            '<polyline points="' + coords.join(' ') + '" fill="none" stroke="var(--color-ember)" stroke-width="2"></polyline>' +
           '</svg>' +
           '<div class="bm-chart-labels">' +
             '<span>' + formatDate(points[0].date) + ' · ' + points[0][key] + '</span>' +

@@ -19,3 +19,7 @@ A modular, fully customizable fitness tracker. The app starts blank with a "+" b
 - Push to this project's own GitHub repo (origin) after committing, unless told not to.
 - Do not install new dependencies or introduce a build step without asking first.
 - Keep each module's code cleanly separated so new modules are easy to add later.
+
+## Design system
+- Read BRAND.md before making any visual/UI change. It is the single source of truth for colors, typography, spacing, iconography, and motion — do not introduce new colors or styles outside it.
+- Brand assets (app icon, wordmark, splash screen) live in /assets/brand/.

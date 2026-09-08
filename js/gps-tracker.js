@@ -172,9 +172,9 @@ var GpsTracker = (function () {
         attribution: '&copy; OpenStreetMap contributors',
         maxZoom: 19
       }).addTo(routeMap);
-      var line = L.polyline(latlngs, { color: '#2f6fed', weight: 4 }).addTo(routeMap);
-      L.circleMarker(latlngs[0], { radius: 6, color: '#2f6fed', fillColor: '#2f6fed', fillOpacity: 1 }).addTo(routeMap);
-      L.circleMarker(latlngs[latlngs.length - 1], { radius: 6, color: '#d64545', fillColor: '#d64545', fillOpacity: 1 }).addTo(routeMap);
+      var line = L.polyline(latlngs, { color: '#ff6b35', weight: 4 }).addTo(routeMap);
+      L.circleMarker(latlngs[0], { radius: 6, color: '#ff6b35', fillColor: '#ff6b35', fillOpacity: 1 }).addTo(routeMap);
+      L.circleMarker(latlngs[latlngs.length - 1], { radius: 6, color: '#ff5c5c', fillColor: '#ff5c5c', fillOpacity: 1 }).addTo(routeMap);
       routeMap.fitBounds(line.getBounds(), { padding: [20, 20] });
       setTimeout(function () { routeMap.invalidateSize(); }, 50);
     }).catch(function () {
@@ -285,8 +285,8 @@ var GpsTracker = (function () {
       attribution: '&copy; OpenStreetMap contributors',
       maxZoom: 19
     }).addTo(map);
-    polyline = L.polyline([], { color: '#2f6fed', weight: 4 }).addTo(map);
-    currentMarker = L.circleMarker([lat, lng], { radius: 7, color: '#2f6fed', fillColor: '#2f6fed', fillOpacity: 1 }).addTo(map);
+    polyline = L.polyline([], { color: '#ff6b35', weight: 4 }).addTo(map);
+    currentMarker = L.circleMarker([lat, lng], { radius: 7, color: '#ff6b35', fillColor: '#ff6b35', fillOpacity: 1 }).addTo(map);
     setTimeout(function () { map.invalidateSize(); }, 50);
   }
 

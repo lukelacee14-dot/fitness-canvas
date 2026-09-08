@@ -1,7 +1,7 @@
 // Bump CACHE_VERSION whenever any precached file changes so clients pick up
 // the new deploy instead of being stuck on a stale cache — activate deletes
 // every cache whose name doesn't match the current version.
-var CACHE_VERSION = 'v6';
+var CACHE_VERSION = 'v7';
 var CACHE_NAME = 'fitness-canvas-' + CACHE_VERSION;
 
 // Keep this in sync with index.html's <script>/<link> tags when adding a
@@ -54,9 +54,8 @@ var PRECACHE_ASSETS = [
   'modules/achievements/module.js',
   'modules/leaderboards/module.js',
   'data/nutrition-database.json',
-  'icons/icon-192.png',
-  'icons/icon-512.png',
-  'icons/icon-maskable-512.png'
+  'assets/brand/icon-1024.png',
+  'assets/brand/splash-screen.png'
 ];
 
 self.addEventListener('install', function (event) {
