@@ -4,7 +4,9 @@
 // already worked before this existed. "Save & Post to Timeline" runs that same
 // onSave callback, then drops a matching post into Activity Feed's own
 // storage (module:activity-feed) using its existing post shape, so it renders
-// there identically to a post made from the feed's own composer.
+// there identically to a post made from the feed's own composer. Posting to
+// the timeline only makes sense once a profile exists to post as, so when
+// there's no profile the sheet is skipped entirely and onSave runs directly.
 var SaveConfirm = (function () {
   var overlay, captionInput, saveBtn, saveAndPostBtn, closeBtn;
   var built = false;
@@ -13,6 +15,11 @@ var SaveConfirm = (function () {
 
   function uid() {
     return 'sc' + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+  }
+
+  function hasProfile() {
+    var profile = Storage.get('module:profile', { name: '' });
+    return !!(profile.name && profile.name.trim());
   }
 
   function todayStr() {
@@ -88,6 +95,13 @@ var SaveConfirm = (function () {
   }
 
   function show(options) {
+    // No profile means nothing to post as, so the "Save & Post to Timeline"
+    // choice doesn't apply — save directly and skip the sheet entirely.
+    if (!hasProfile()) {
+      if (options.onSave) options.onSave();
+      return;
+    }
+
     buildOverlay();
     pendingOnSave = options.onSave || null;
     pendingTaggedLabel = options.taggedLabel || null;
@@ -96,5 +110,5 @@ var SaveConfirm = (function () {
     captionInput.focus();
   }
 
-  return { show: show };
+  return { show: show, hasProfile: hasProfile, postToFeed: addFeedPost };
 })();

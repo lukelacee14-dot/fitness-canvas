@@ -384,6 +384,25 @@
 
     if (migrated) save();
 
+    // ---- Session tracking (module-level: spans every sport, not just the
+    // one currently on screen) ------------------------------------------
+
+    var sessionCount = 0;
+    var sessionSummaries = [];
+
+    function recordSessionEntry(summaryLine) {
+      sessionCount++;
+      sessionSummaries.push(summaryLine);
+      renderFinishBar();
+    }
+
+    function flashSavedRow(logEl, entryId) {
+      var row = logEl.querySelector('[data-entry-id="' + entryId + '"]');
+      if (!row) return;
+      row.classList.add('wl-row--saved');
+      setTimeout(function () { row.classList.remove('wl-row--saved'); }, 900);
+    }
+
     var jumpSportId = Storage.get('nav:jump-to-sport', null);
     if (jumpSportId && SPORT_INDEX[jumpSportId] && SPORT_INDEX[jumpSportId].status === 'live') {
       Storage.remove('nav:jump-to-sport');
@@ -456,6 +475,76 @@
     confirmOverlay.querySelector('.sport-confirm-ok').addEventListener('click', function () {
       if (pendingRemoveId) removeSport(pendingRemoveId);
       closeConfirm();
+    });
+
+    // ---- Finish Session bar + summary prompt -------------------------
+    // Pinned at the bottom of the workout logger screen once anything has
+    // been logged this session (across every sport, not just the current
+    // one). Individual entries save quietly now — this is the one point
+    // where a "post to timeline" prompt appears, for the whole session.
+
+    var finishBar = document.createElement('div');
+    finishBar.className = 'wl-finish-session';
+    finishBar.hidden = true;
+    finishBar.innerHTML = '<button type="button" class="btn-primary wl-finish-btn">Finish Session (<span class="wl-finish-count"></span>)</button>';
+    container.appendChild(finishBar);
+
+    var finishBtn = finishBar.querySelector('.wl-finish-btn');
+    var finishCountEl = finishBar.querySelector('.wl-finish-count');
+
+    function renderFinishBar() {
+      var visible = sessionCount > 0;
+      finishBar.hidden = !visible;
+      container.classList.toggle('wl-has-finish-bar', visible);
+      finishCountEl.textContent = String(sessionCount);
+    }
+
+    var summaryOverlay = document.createElement('div');
+    summaryOverlay.className = 'overlay overlay--save-confirm';
+    summaryOverlay.hidden = true;
+    summaryOverlay.innerHTML =
+      '<div class="overlay__panel">' +
+        '<div class="overlay__header">' +
+          '<h2>Session Complete</h2>' +
+          '<button type="button" class="icon-btn wl-summary-close" aria-label="Close">&#10005;</button>' +
+        '</div>' +
+        '<div class="overlay__body">' +
+          '<div class="field-row"><label>Caption for the timeline post<textarea class="wl-summary-caption" rows="4"></textarea></label></div>' +
+          '<div class="sc-actions">' +
+            '<button type="button" class="btn-primary wl-summary-post-btn">Post to Timeline</button>' +
+            '<button type="button" class="btn-secondary wl-summary-skip-btn">Skip</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    container.appendChild(summaryOverlay);
+
+    var summaryCaptionInput = summaryOverlay.querySelector('.wl-summary-caption');
+
+    function closeSummary() { summaryOverlay.hidden = true; }
+
+    summaryOverlay.querySelector('.wl-summary-close').addEventListener('click', closeSummary);
+    summaryOverlay.querySelector('.wl-summary-skip-btn').addEventListener('click', closeSummary);
+    summaryOverlay.addEventListener('click', function (e) { if (e.target === summaryOverlay) closeSummary(); });
+
+    summaryOverlay.querySelector('.wl-summary-post-btn').addEventListener('click', function () {
+      var caption = summaryCaptionInput.value.trim();
+      closeSummary();
+      if (caption) SaveConfirm.postToFeed(caption, 'Workout Session — ' + formatDate(todayStr()));
+    });
+
+    function openSessionSummary(summaries) {
+      summaryCaptionInput.value = summaries.map(function (s) { return '• ' + s; }).join('\n');
+      summaryOverlay.hidden = false;
+      summaryCaptionInput.focus();
+    }
+
+    finishBtn.addEventListener('click', function () {
+      var summaries = sessionSummaries.slice();
+      sessionCount = 0;
+      sessionSummaries = [];
+      renderFinishBar();
+
+      if (SaveConfirm.hasProfile() && summaries.length) openSessionSummary(summaries);
     });
 
     function buildPickerRow(sport) {
@@ -709,6 +798,7 @@
           var tbody = document.createElement('tbody');
           byDate[date].forEach(function (entry) {
             var tr = document.createElement('tr');
+            tr.dataset.entryId = entry.id;
             tr.innerHTML =
               '<td>' + escapeHtml(entry.exercise) + '</td>' +
               '<td>' + (entry.sets || '') + '</td>' +
@@ -750,28 +840,26 @@
         var weightVal = fd.get('weight') ? Number(fd.get('weight')) : null;
         var notesVal = (fd.get('notes') || '').toString().trim();
 
-        SaveConfirm.show({
-          summary: buildStrengthSummary(exercise, setsVal, repsVal, weightVal),
-          taggedLabel: exercise + ' — ' + formatDate(dateVal),
-          onSave: function () {
-            entries.push({
-              id: uid(),
-              date: dateVal,
-              exercise: exercise,
-              sets: setsVal,
-              reps: repsVal,
-              weight: weightVal,
-              notes: notesVal
-            });
-            data.entries['strength-training'] = entries;
-
-            save();
-            render();
-            form.reset();
-            form.querySelector('[name="date"]').value = todayStr();
-            form.querySelector('[name="exercise"]').focus();
-          }
+        var newId = uid();
+        entries.push({
+          id: newId,
+          date: dateVal,
+          exercise: exercise,
+          sets: setsVal,
+          reps: repsVal,
+          weight: weightVal,
+          notes: notesVal
         });
+        data.entries['strength-training'] = entries;
+
+        save();
+        render();
+        flashSavedRow(logEl, newId);
+        recordSessionEntry(buildStrengthSummary(exercise, setsVal, repsVal, weightVal));
+
+        form.reset();
+        form.querySelector('[name="date"]').value = todayStr();
+        form.querySelector('[name="exercise"]').focus();
       });
 
       render();
@@ -855,6 +943,7 @@
           var tbody = document.createElement('tbody');
           byDate[date].forEach(function (entry) {
             var tr = document.createElement('tr');
+            tr.dataset.entryId = entry.id;
             tr.innerHTML = fields.map(function (f) {
               var val = entry[f.key];
               return '<td>' + (val !== undefined && val !== null && val !== '' ? escapeHtml(String(val)) : '') + '</td>';
@@ -912,17 +1001,14 @@
           pendingRoute = null;
         }
 
-        SaveConfirm.show({
-          summary: buildEntrySummary(def.title, entry, fields),
-          taggedLabel: def.title + ' — ' + formatDate(entry.date),
-          onSave: function () {
-            entries.push(entry);
-            save();
-            render();
-            form.reset();
-            form.querySelector('[name="date"]').value = todayStr();
-          }
-        });
+        entries.push(entry);
+        save();
+        render();
+        flashSavedRow(logEl, entry.id);
+        recordSessionEntry(buildEntrySummary(def.title, entry, fields));
+
+        form.reset();
+        form.querySelector('[name="date"]').value = todayStr();
       });
 
       render();

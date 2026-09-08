@@ -1,5 +1,6 @@
 var TabStrip = (function () {
   var LONG_PRESS_MS = 550;
+  var LIFT_DELAY_MS = 100;
   var stripEl = document.getElementById('tab-strip');
 
   function buildTab(moduleId, isActive) {
@@ -14,24 +15,34 @@ var TabStrip = (function () {
       : '<span>•</span>';
 
     var timer = null;
+    var liftTimer = null;
     var longPressed = false;
 
     function startPress() {
       longPressed = false;
+      liftTimer = setTimeout(function () {
+        btn.classList.add('tab-btn--lifting');
+      }, LIFT_DELAY_MS);
       timer = setTimeout(function () {
         longPressed = true;
         if (navigator.vibrate) {
           try { navigator.vibrate(15); } catch (e) {}
         }
+        btn.classList.remove('tab-btn--lifting');
         RemoveConfirm.open(moduleId);
       }, LONG_PRESS_MS);
     }
 
     function cancelPress() {
+      if (liftTimer) {
+        clearTimeout(liftTimer);
+        liftTimer = null;
+      }
       if (timer) {
         clearTimeout(timer);
         timer = null;
       }
+      btn.classList.remove('tab-btn--lifting');
     }
 
     btn.addEventListener('pointerdown', startPress);

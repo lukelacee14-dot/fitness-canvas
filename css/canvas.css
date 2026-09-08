@@ -173,12 +173,17 @@ body {
   color: var(--color-text-secondary);
   -webkit-user-select: none;
   user-select: none;
-  transition: filter var(--transition-standard);
+  transition: filter var(--transition-standard), transform var(--transition-standard), box-shadow var(--transition-standard);
 }
 
 .tab-btn--active {
   color: var(--color-ember);
   box-shadow: 0 0 0 2px var(--color-ember);
+}
+
+.tab-btn--lifting {
+  transform: scale(1.12) translateY(-0.25rem);
+  box-shadow: 0 0 0 2px rgba(255, 107, 53, 0.5);
 }
 
 .tab-btn__icon {

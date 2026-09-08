@@ -178,6 +178,35 @@
   text-transform: uppercase;
 }
 
+.wl-table tbody tr {
+  transition: background var(--transition-standard);
+}
+
+.wl-row--saved {
+  background: rgba(255, 107, 53, 0.18);
+}
+
+.wl-finish-session {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: calc(var(--bar-height) + var(--safe-bottom));
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: 0.75rem 1rem;
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-divider);
+  z-index: 15;
+}
+
+.wl-finish-session .btn-primary {
+  margin-top: 0;
+}
+
+.wl-has-finish-bar {
+  padding-bottom: 4.5rem;
+}
+
 /* Meal tracker */
 .mt-datenav {
   display: flex;
